@@ -1,6 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+@plugin "@tailwindcss/typography";
+
+@plugin "tailwindcss-animate";
+@theme {
+  /* 1. Define your custom breakpoints (screens) */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
+
+  --animate-ken-burns: ken-burns 20s ease-in-out infinite alternate;
+
+  @keyframes ken-burns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.05) translate(15%, -2%);
+    }
+  }
+}
+
+@theme inline {
+  --font-base: var(--font-montserrat);
+}
+
+/* 2. Configure the container utility behavior */
+.container {
+  @apply mx-auto px-2 lg:px-6;
+}
 
 @layer base {
   h1,
@@ -13,7 +46,7 @@
     font-weight: unset;
   }
 
-  :root {
+  /* :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -81,15 +114,15 @@
     --success: 196 100% 14%;
     --warning: 34 51% 25%;
     --error: 10 39% 43%;
-  }
+  } */
 }
 
 @layer base {
-  * {
+  /* * {
     @apply border-border;
-  }
+  } */
   body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    @apply bg-base-100 text-base-100 flex min-h-[100vh] flex-col;
   }
 }
 
@@ -97,7 +130,7 @@ html {
   opacity: 0;
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
+html[data-theme="dark"],
+html[data-theme="light"] {
   opacity: initial;
 }

@@ -28,6 +28,10 @@ export const hero: Field = {
           value: 'highImpact',
         },
         {
+          label: 'Home Hero',
+          value: 'homeHero',
+        },
+        {
           label: 'Medium Impact',
           value: 'mediumImpact',
         },
@@ -51,18 +55,38 @@ export const hero: Field = {
           ]
         },
       }),
+      admin: {
+        condition: (_, { type } = {}) => !['homeHero'].includes(type),
+      },
       label: false,
+    },
+    {
+      name: 'title',
+      type: 'text',
+      admin: {
+        condition: (_, { type } = {}) => ['homeHero'].includes(type),
+      },
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      admin: {
+        condition: (_, { type } = {}) => ['homeHero'].includes(type),
+      },
     },
     linkGroup({
       overrides: {
         maxRows: 2,
+        admin: {
+          condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        },
       },
     }),
     {
       name: 'media',
       type: 'upload',
       admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
+        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'homeHero'].includes(type),
       },
       relationTo: 'media',
       required: true,
