@@ -201,7 +201,16 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | CardBlock
+    | LogoCarouselBlock
+    | ImageContentBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -443,6 +452,7 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
+  title?: string | null;
   richText?: {
     root: {
       type: string;
@@ -458,6 +468,8 @@ export interface CallToActionBlock {
     };
     [k: string]: unknown;
   } | null;
+  variant?: ('primary' | 'starry' | 'background' | 'secondary') | null;
+  media?: (number | null) | Media;
   links?:
     | {
         link: {
@@ -491,6 +503,7 @@ export interface CallToActionBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  title?: string | null;
   columns?:
     | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
@@ -551,6 +564,7 @@ export interface MediaBlock {
  * via the `definition` "ArchiveBlock".
  */
 export interface ArchiveBlock {
+  title?: string | null;
   introContent?: {
     root: {
       type: string;
@@ -566,6 +580,7 @@ export interface ArchiveBlock {
     };
     [k: string]: unknown;
   } | null;
+  style?: 'long' | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
   categories?: (number | Category)[] | null;
@@ -576,6 +591,12 @@ export interface ArchiveBlock {
         value: number | Post;
       }[]
     | null;
+  longCardStyles?: {
+    card1?: ('primary' | 'secondary' | 'starry' | 'transparent') | null;
+    card2?: ('primary' | 'secondary' | 'starry' | 'transparent') | null;
+    card3?: ('primary' | 'secondary' | 'starry' | 'transparent') | null;
+    card4?: ('primary' | 'secondary' | 'starry' | 'transparent') | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'archive';
@@ -779,6 +800,78 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardBlock".
+ */
+export interface CardBlock {
+  title?: string | null;
+  cards?:
+    | {
+        title: string;
+        description?: string | null;
+        variant: 'primary' | 'secondary' | 'starry';
+        /**
+         * 1 or 2 rows (on lg screens)
+         */
+        rowSpan?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cardBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCarouselBlock".
+ */
+export interface LogoCarouselBlock {
+  title?: string | null;
+  logos: {
+    image: number | Media;
+    alt?: string | null;
+    id?: string | null;
+  }[];
+  speed?: number | null;
+  gap?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logoCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageContentBlock".
+ */
+export interface ImageContentBlock {
+  title?: string | null;
+  cells?:
+    | {
+        type: 'text' | 'media';
+        spanRows?: boolean | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        media?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageContent';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1090,6 +1183,9 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        cardBlock?: T | CardBlockSelect<T>;
+        logoCarousel?: T | LogoCarouselBlockSelect<T>;
+        imageContent?: T | ImageContentBlockSelect<T>;
       };
   meta?:
     | T
@@ -1110,7 +1206,10 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
+  title?: T;
   richText?: T;
+  variant?: T;
+  media?: T;
   links?:
     | T
     | {
@@ -1134,6 +1233,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  title?: T;
   columns?:
     | T
     | {
@@ -1169,12 +1269,22 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
+  title?: T;
   introContent?: T;
+  style?: T;
   populateBy?: T;
   relationTo?: T;
   categories?: T;
   limit?: T;
   selectedDocs?: T;
+  longCardStyles?:
+    | T
+    | {
+        card1?: T;
+        card2?: T;
+        card3?: T;
+        card4?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1186,6 +1296,60 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardBlock_select".
+ */
+export interface CardBlockSelect<T extends boolean = true> {
+  title?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        variant?: T;
+        rowSpan?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCarouselBlock_select".
+ */
+export interface LogoCarouselBlockSelect<T extends boolean = true> {
+  title?: T;
+  logos?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
+  speed?: T;
+  gap?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageContentBlock_select".
+ */
+export interface ImageContentBlockSelect<T extends boolean = true> {
+  title?: T;
+  cells?:
+    | T
+    | {
+        type?: T;
+        spanRows?: T;
+        richText?: T;
+        media?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1667,26 +1831,37 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  brand?: {
+    logo?: (number | null) | Media;
+  };
+  sections?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        title: string;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        colStartLg?: number | null;
         id?: string | null;
       }[]
     | null;
+  credit?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1718,20 +1893,33 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  brand?:
     | T
     | {
-        link?:
+        logo?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
             };
+        colStartLg?: T;
         id?: T;
       };
+  credit?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

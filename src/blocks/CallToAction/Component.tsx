@@ -1,23 +1,36 @@
-import React from 'react'
+import React from "react";
 
-import type { CallToActionBlock as CTABlockProps } from '@/payload-types'
+import type { CallToActionBlock as CTABlockProps } from "@/payload-types";
 
-import RichText from '@/components/RichText'
-import { CMSLink } from '@/components/Link'
+import { StarryCTA } from "./Starry";
+import { PrimaryCTA } from "./Primary";
+import { BackgroundCTA } from "./Background";
+import { SecondaryCTA } from "./Secondary";
 
-export const CallToActionBlock: React.FC<CTABlockProps> = ({ links, richText }) => {
+const variants = {
+  starry: StarryCTA,
+  primary: PrimaryCTA,
+  background: BackgroundCTA,
+  secondary: SecondaryCTA,
+};
+
+export const CallToActionBlock: React.FC<CTABlockProps> = (props) => {
+  const { variant, title } = props || {};
+
+  if (!variant) return null;
+
+  const CTAToRender = variants[variant];
+
+  if (!CTAToRender) return null;
+
   return (
-    <div className="container">
-      <div className="bg-card rounded border-border border p-4 flex flex-col gap-8 md:flex-row md:justify-between md:items-center">
-        <div className="max-w-[48rem] flex items-center">
-          {richText && <RichText className="mb-0" data={richText} enableGutter={false} />}
-        </div>
-        <div className="flex flex-col gap-8">
-          {(links || []).map(({ link }, i) => {
-            return <CMSLink key={i} size="lg" {...link} />
-          })}
-        </div>
-      </div>
+    <div className="w-full">
+      {title && (
+        <h2 className="text-primary py-10 text-center text-base font-semibold md:text-3xl">
+          {title}
+        </h2>
+      )}
+      <CTAToRender {...props} />
     </div>
-  )
-}
+  );
+};

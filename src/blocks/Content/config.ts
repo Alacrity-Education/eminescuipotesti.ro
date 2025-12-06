@@ -31,8 +31,10 @@ const columnFields: Field[] = [
         label: 'Full',
         value: 'full',
       },
+
     ],
   },
+
   {
     name: 'richText',
     type: 'richText',
@@ -67,6 +69,11 @@ export const Content: Block = {
   slug: 'content',
   interfaceName: 'ContentBlock',
   fields: [
+    {
+      name:"title",
+      type:"text",
+      label:"title",
+    },
     {
       name: 'columns',
       type: 'array',

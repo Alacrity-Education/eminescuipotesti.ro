@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/blocks/LogoCarousel/index.tsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/blocks/LogoCarousel/index.tsx" />
+              <option name="updatedContent" value="import React from &quot;react&quot;;&#10;import type { LogoCarouselBlock as LogoCarouselProps, Media as MediaType } from &quot;@/payload-types&quot;;&#10;import { Media } from &quot;@/components/Media&quot;;&#10;import { cn } from &quot;@/utilities/ui&quot;;&#10;&#10;/**&#10; * Continuous marquee-style logo carousel:&#10; * - Duplicates the logo list to create a seamless loop.&#10; * - Uses CSS animation for infinite horizontal scroll.&#10; * - When one set exits left, the duplicate follows, forming a ring.&#10; */&#10;export const LogoCarousel: React.FC&lt;LogoCarouselProps&gt; = ({ logos, speed = 30, gap = 24 }) =&gt; {&#10;  const items = (logos || []).map((l) =&gt; ({&#10;    image: typeof l?.image === &quot;object&quot; ? (l.image as MediaType) : null,&#10;    alt: l?.alt ?? &quot;&quot;,&#10;  })).filter((i) =&gt; i.image);&#10;&#10;  // Duplicate items to ensure seamless loop even if few logos&#10;  const loopItems = [...items, ...items];&#10;&#10;  // Animation duration derived from speed (seconds per loop)&#10;  const duration = Math.max(speed, 5);&#10;&#10;  return (&#10;    &lt;section className={cn(&quot;relative w-full overflow-hidden&quot;)}&gt; &#10;      &lt;div&#10;        className={cn(&#10;          &quot;flex w-max&quot;,&#10;          &quot;gap-6&quot;, // base gap; overridden inline by style&#10;          &quot;animate-[marquee_linear_infinite]&quot;&#10;        )}&#10;        style={{&#10;          // custom CSS vars consumed in globals.css utility (we add the keyframes below if needed)&#10;          // fallback to px gap; tailwind class still applies&#10;          columnGap: `${gap}px`,&#10;          animationDuration: `${duration}s`,&#10;        }}&#10;      &gt;&#10;        {loopItems.map((item, idx) =&gt; (&#10;          &lt;div key={idx} className={cn(&quot;shrink-0 flex items-center justify-center&quot;)}&gt; &#10;            &lt;div className={cn(&quot;h-38 w-38 md:h-64 md:w-64&quot;)}&gt; &#10;              &lt;Media&#10;                resource={item.image as any}&#10;                pictureClassName=&quot;h-full w-full&quot;&#10;                imgClassName=&quot;h-full w-full object-contain&quot;&#10;                fill&#10;              /&gt;&#10;            &lt;/div&gt;&#10;          &lt;/div&gt;&#10;        ))}&#10;      &lt;/div&gt;&#10;    &lt;/section&gt;&#10;  );&#10;};&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

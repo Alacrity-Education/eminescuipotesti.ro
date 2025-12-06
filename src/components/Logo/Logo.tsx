@@ -22,22 +22,23 @@ export const Logo = (props: Props) => {
     <>
       <img
         alt="Payload Logo"
-        width={193}
-        height={34}
         loading={loading}
         fetchPriority={priority}
         decoding="async"
-        className={clsx("hidden h-20 sm:block", className)}
+        className={clsx(
+          "hidden h-10 p-1 sm:inline-block sm:h-20 sm:p-2",
+          className,
+        )}
         src="/logo.svg"
       />
       <img
         alt="Payload Logo"
-        width={193}
-        height={34}
+        width={50}
+        height={50}
         loading={loading}
         fetchPriority={priority}
         decoding="async"
-        className={clsx("h-20 sm:hidden", className)}
+        className={clsx("block h-10 p-1 sm:hidden", className)}
         src="/logo-sm.svg"
       />
     </>

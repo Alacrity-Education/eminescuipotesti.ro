@@ -1,65 +1,35 @@
-import type { Post, ArchiveBlock as ArchiveBlockProps } from '@/payload-types'
+import React from "react";
 
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import React from 'react'
-import RichText from '@/components/RichText'
+import type { ArchiveBlock as ArchiveBlockProps } from "@/payload-types";
 
-import { CollectionArchive } from '@/components/CollectionArchive'
+import { LongArchiveBlock } from "./Long";
+
+const variants = {
+  long: LongArchiveBlock,
+};
 
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {
-    id?: string
+    id?: string;
   }
-> = async (props) => {
-  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
+> = (props) => {
+  const { style, title } = props || {};
+  console.log("ArchiveBlock props:", style);
 
-  const limit = limitFromProps || 3
+  if (!style) return null;
 
-  let posts: Post[] = []
+  const ArchiveBlockToRender = variants[style];
 
-  if (populateBy === 'collection') {
-    const payload = await getPayload({ config: configPromise })
-
-    const flattenedCategories = categories?.map((category) => {
-      if (typeof category === 'object') return category.id
-      else return category
-    })
-
-    const fetchedPosts = await payload.find({
-      collection: 'posts',
-      depth: 1,
-      limit,
-      ...(flattenedCategories && flattenedCategories.length > 0
-        ? {
-            where: {
-              categories: {
-                in: flattenedCategories,
-              },
-            },
-          }
-        : {}),
-    })
-
-    posts = fetchedPosts.docs
-  } else {
-    if (selectedDocs?.length) {
-      const filteredSelectedPosts = selectedDocs.map((post) => {
-        if (typeof post.value === 'object') return post.value
-      }) as Post[]
-
-      posts = filteredSelectedPosts
-    }
-  }
+  if (!ArchiveBlockToRender) return null;
 
   return (
-    <div className="my-16" id={`block-${id}`}>
-      {introContent && (
-        <div className="container mb-16">
-          <RichText className="ms-0 max-w-[48rem]" data={introContent} enableGutter={false} />
-        </div>
+    <div className="w-full">
+      {title && (
+        <h2 className="text-primary text-center text-xl font-semibold md:text-3xl">
+          {title}
+        </h2>
       )}
-      <CollectionArchive posts={posts} />
+      <ArchiveBlockToRender {...props} />
     </div>
-  )
-}
+  );
+};

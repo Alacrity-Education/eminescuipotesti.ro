@@ -18,7 +18,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
 
   return (
     <div
-      className="relative -mt-[10.4rem] flex h-screen items-center justify-center overflow-hidden text-white"
+      className="relative -mt-28 flex h-screen items-center justify-center overflow-hidden text-white sm:-mt-40"
       data-theme="dark"
     >
       <div className="font-base relative z-20 container mb-8 flex h-full items-end justify-start">
