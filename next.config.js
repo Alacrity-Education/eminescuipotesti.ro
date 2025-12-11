@@ -16,6 +16,7 @@ const nextConfig = {
         port: '3000',
         pathname: '/**/*',
       },
+      new URL(NEXT_PUBLIC_SERVER_URL+"/**/*"),
       ...[NEXT_PUBLIC_SERVER_URL /* 'https://example.com' */].map((item) => {
         const url = new URL(item)
 
