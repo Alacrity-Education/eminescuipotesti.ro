@@ -8,14 +8,9 @@ type Props = {
   className?: string
 } & BannerBlockProps
 
-export const BannerBlock: React.FC<Props> = ({ className, content, style, title }) => {
+export const BannerBlock: React.FC<Props> = ({ className, content, style }) => {
   return (
     <div className="w-full">
-      {title && (
-        <h2 className="text-primary py-10 text-center text-base font-semibold md:text-3xl">
-          {title}
-        </h2>
-      )}
       <div className={cn('mx-auto my-8 w-full', className)}>
         <div
           className={cn('border py-3 px-6 flex items-center rounded', {

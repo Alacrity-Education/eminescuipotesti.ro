@@ -2,7 +2,6 @@ import React from "react";
 import { Media } from "@/components/Media";
 import RichText from "@/components/RichText";
 import { cn } from "@/utilities/ui";
-
 type Cell = {
   type: 'text' | 'media';
   spanRows?: boolean;
@@ -36,10 +35,10 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
           {cells.map((cell, i) => {
             const common = cn("rounded-lg overflow-hidden", cell.spanRows ? "md:row-span-2" : undefined);
 
-            if (cell.type === "media" && cell.media && typeof cell.media === "object") {
+            if (cell.type === "media" && cell.media) {
               return (
                 <div key={i} className={common}>
-                  <Media resource={cell.media} imgClassName="rounded-lg" />
+                  <Media resource={cell.media as any} imgClassName="rounded-lg" />
                 </div>
               );
             }
@@ -47,7 +46,7 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             if (cell.type === "text" && cell.richText) {
               return (
                 <div key={i} className={cn(common, "p-4 border border-border rounded-lg bg-card")}>
-                  <RichText data={cell.richText} enableGutter={false} />
+                  <RichText data={cell.richText as any} enableGutter={false} />
                 </div>
               );
             }
