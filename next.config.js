@@ -10,13 +10,7 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '3000',
-        pathname: '/**/*',
-      },
-      new URL(NEXT_PUBLIC_SERVER_URL+"/**/*"),
+
       ...[NEXT_PUBLIC_SERVER_URL /* 'https://example.com' */].map((item) => {
         const url = new URL(item)
 
