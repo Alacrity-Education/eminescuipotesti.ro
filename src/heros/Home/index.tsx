@@ -16,6 +16,8 @@ export const HomeHero: React.FC<Page["hero"]> = ({
     setHeaderTheme("dark");
   });
 
+  console.log(media)
+
   return (
     <div
       className="relative -mt-28 flex h-screen items-center justify-center overflow-hidden text-white sm:-mt-40"
@@ -42,7 +44,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-transparent via-70% to-transparent opacity-70"></div>
 
         {/* Media Component */}
-        {media && typeof media === "object" && (
+        {media && (
           <Media
             fill
             priority
