@@ -16,8 +16,6 @@ export const HomeHero: React.FC<Page["hero"]> = ({
     setHeaderTheme("dark");
   });
 
-  console.log(media)
-
   return (
     <div
       className="relative -mt-28 flex h-screen items-center justify-center overflow-hidden text-white sm:-mt-40"
