@@ -23,5 +23,7 @@ export const RenderHero: React.FC<Page['hero']> = (props) => {
 
   if (!HeroToRender) return null
 
+  console.log(props.media, type)
+
   return <HeroToRender {...props} />
 }
