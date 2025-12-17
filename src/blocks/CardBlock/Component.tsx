@@ -13,7 +13,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
   const visibleCards = (cards || []).slice(0, 6);
   const numCards = visibleCards.length;
   // On lg, we show 3 columns; only add a second row if we have >= 4 cards
-  const lgRowsClass = numCards >= 4 ? "lg:grid-rows-2" : "lg:grid-rows-1";
+  const lgRowsClass = numCards >= 3 ? "lg:grid-rows-2" : "lg:grid-rows-1";
 
   return (
     <section className={cn("container mx-auto w-full h-max lg:w-full")}>
@@ -30,9 +30,9 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
         // sm: two columns
         "sm:grid-cols-2",
         // md: three columns
-        "md:grid-cols-3",
+        "md:grid-cols-2",
         // lg: explicit 3 cols with conditional rows based on count
-        "lg:grid-cols-3",
+        "lg:grid-cols-2",
         lgRowsClass,
         "h-full w-full"
       )}>
@@ -42,7 +42,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
           const rowSpan = Math.min(Math.max(card?.rowSpan ?? 1, 1), 2);
           const spanClasses = cn(
             // apply row span only at lg when we actually have 2 rows
-            numCards >= 4 && rowSpan === 2 ? "lg:row-span-2" : "lg:row-span-1",
+            numCards >= 3 && rowSpan === 2 ? "lg:row-span-2" : "lg:row-span-1",
           );
 
           return (
