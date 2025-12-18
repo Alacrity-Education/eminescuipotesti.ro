@@ -12,7 +12,8 @@ export const BackgroundCTA: React.FC<CTABlockProps> = ({
   media,
 }) => {
   return (
-    <div className="text-primary-content relative max-w-screen w-full h-max min-h-64 overflow-clip rounded-xl shadow-2xl container mx-auto sm:min-h-64">
+    <div className={"container mx-auto "}>
+    <div className="text-primary-content relative max-w-screen w-full h-max min-h-64 overflow-clip rounded-xl shadow-2xl  sm:min-h-64">
       {media && typeof media === "object" && (
         <Media
           fill
@@ -40,6 +41,7 @@ export const BackgroundCTA: React.FC<CTABlockProps> = ({
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 };

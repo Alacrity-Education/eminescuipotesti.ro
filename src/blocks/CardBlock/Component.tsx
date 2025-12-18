@@ -16,7 +16,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
   const lgRowsClass = numCards >= 3 ? "lg:grid-rows-2" : "lg:grid-rows-1";
 
   return (
-    <section className={cn("container mx-auto w-full h-max lg:w-full")}>
+    <section className={cn("container mx-auto w-full h-max py-12 px-4 md:px-8 lg:px-16")}>
       {title && (
         <h2 className={cn(
           "text-primary pb-20 text-center",
@@ -28,7 +28,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
         // base: single column
         "grid grid-cols-1 gap-6",
         // sm: two columns
-        "sm:grid-cols-2",
+        "sm:grid-cols-1",
         // md: three columns
         "md:grid-cols-2",
         // lg: explicit 3 cols with conditional rows based on count
@@ -42,7 +42,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
           const rowSpan = Math.min(Math.max(card?.rowSpan ?? 1, 1), 2);
           const spanClasses = cn(
             // apply row span only at lg when we actually have 2 rows
-            numCards >= 3 && rowSpan === 2 ? "lg:row-span-2" : "lg:row-span-1",
+            numCards >= 3 && rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
           );
 
           return (

@@ -74,7 +74,7 @@
 
 
 .container {
-  @apply px-6 sm:px-0
+  @apply px-6
 }
 
 @theme inline {

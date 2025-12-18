@@ -7,7 +7,8 @@ import { CMSLink } from "@/components/Link";
 
 export const PrimaryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
   return (
-    <div className={"w-full container mx-auto"}>
+    <div className={"container mx-auto w-full"}>
+    <div className={"w-full "}>
     <div className="bg-linear-to-tr from-primary max-w-screen w-full to-black text-secondary relative  h-max min-h-64 rounded-xl  shadow-2xl  sm:min-h-64">
       <div className="relative z-20 flex h-max min-h-64 w-full flex-col rounded p-8 sm:min-h-64">
         <div className="max-w-3xl">
@@ -26,6 +27,7 @@ export const PrimaryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
           })}
         </div>
       </div>
+    </div>
     </div>
     </div>
   );
