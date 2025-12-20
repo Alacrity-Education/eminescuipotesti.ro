@@ -810,12 +810,34 @@ export interface CardBlock {
   cards?:
     | {
         title: string;
-        description?: string | null;
-        variant: 'primary' | 'secondary' | 'starry';
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        variant: 'primary' | 'secondary' | 'starry' | 'white';
+        /**
+         * 1 or 2 columns (on md and larger)
+         */
+        colSpan?: number | null;
         /**
          * 1 or 2 rows (on lg screens)
          */
         rowSpan?: number | null;
+        /**
+         * If set, the entire card is clickable and shows an arrow.
+         */
+        link?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1311,7 +1333,9 @@ export interface CardBlockSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         variant?: T;
+        colSpan?: T;
         rowSpan?: T;
+        link?: T;
         id?: T;
       };
   id?: T;

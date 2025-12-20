@@ -1,19 +1,32 @@
 import React from "react";
 import type { CardBlock as CardBlockProps } from "@/payload-types";
 import { cn } from "@/utilities/ui";
+import RichText from "@/components/RichText";
+
+type Variant = "primary" | "secondary" | "starry" | "white";
 
 export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title, cards }) => {
-  const getVariantClasses = (variant: "primary" | "secondary" | "starry") => {
+  const getVariantClasses = (variant: Variant) => {
     if (variant === "primary") return "bg-primary text-primary-content";
     if (variant === "secondary") return "bg-secondary text-secondary-content";
+    if (variant === "white") return "bg-transparent text-base-content";
     // starry background: gradient from primary to black with stars
     return "text-primary-content bg-linear-to-tr from-primary to-black stars";
   };
 
+  // Match arrow color with text color per variant
+  const getArrowTextClass = (variant: Variant) => {
+    if (variant === "primary") return "text-primary-content";
+    if (variant === "secondary") return "text-secondary-content";
+    if (variant === "white") return "text-base-content";
+    return "text-primary-content"; // starry
+  };
+
   const visibleCards = (cards || []).slice(0, 6);
-  const numCards = visibleCards.length;
-  // On lg, we show 3 columns; only add a second row if we have >= 4 cards
-  const lgRowsClass = numCards >= 3 ? "lg:grid-rows-2" : "lg:grid-rows-1";
+  // grid columns responsive setup
+  const gridColsBase = "grid grid-cols-1 gap-6";
+  const gridColsMd = "md:grid-cols-2";
+  const gridColsLg = "lg:grid-cols-3";
 
   return (
     <section className={cn("container mx-auto w-full h-max py-12 px-4 md:px-8 lg:px-16")}>
@@ -25,31 +38,34 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
         )}>{title}</h2>
       )}
       <div className={cn(
-        // base: single column
-        "grid grid-cols-1 gap-6",
-        // sm: two columns
-        "sm:grid-cols-1",
-        // md: three columns
-        "md:grid-cols-2",
-        // lg: explicit 3 cols with conditional rows based on count
-        "lg:grid-cols-2",
-        lgRowsClass,
+        gridColsBase,
+        gridColsMd,
+        gridColsLg,
         "h-full w-full"
       )}>
         {visibleCards.map((card, i) => {
-          const variant = card?.variant ?? "primary";
-          // Only support row span (disable col span)
+          const rawVariant = card?.variant as Variant | undefined;
+          const variant: Variant = rawVariant ?? "primary";
+          const isWhite = variant === "white";
+          // row and col span support (clamped to 1-2)
           const rowSpan = Math.min(Math.max(card?.rowSpan ?? 1, 1), 2);
+          const colSpan = Math.min(Math.max(card?.colSpan ?? 1, 1), 2);
           const spanClasses = cn(
-            // apply row span only at lg when we actually have 2 rows
-            numCards >= 3 && rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
+            // apply spans from md and up
+            rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
+            colSpan === 2 ? "md:col-span-2 lg:col-span-2" : "md:col-span-1 lg:col-span-1",
           );
 
-          return (
+          // Safe read of optional link until types are regenerated
+          const cardRecord = card as Record<string, unknown>;
+          const href = typeof cardRecord.link === "string" ? (cardRecord.link as string) : undefined;
+
+          const cardInner = (
             <article
-              key={i}
               className={cn(
-                "rounded-lg shadow-xl p-8 h-full w-full min-h-64 ",
+                "relative rounded-lg p-8 h-full w-full min-h-64",
+                // apply shadow except for white variant
+                  !isWhite && "shadow-xl hover:shadow-2xl transition-shadow duration-300",
                 getVariantClasses(variant),
                 spanClasses,
               )}
@@ -57,10 +73,43 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
               {card?.title && (
                 <h3 className="text-xl font-bold mb-2">{card.title}</h3>
               )}
+
               {card?.description && (
-                <p className="text-sm">{card.description}</p>
+                <div className={
+                  card.variant === "white" || card.variant === "secondary"?
+                  "prose prose-sm" :
+                  "prose prose-sm prose-invert"
+                }>
+
+                  <RichText data={card.description} enableGutter={false} />
+                </div>
+              )}
+
+              {/* Arrow indicator when link exists */}
+              {href && (
+                <span
+                  className={cn(
+                    "absolute bottom-4 right-4 inline-flex items-center justify-center",
+                    getArrowTextClass(variant),
+                    "text-xl",
+                    // rotate -45deg (counterclockwise) to point to top-right
+                    "-rotate-45",
+                  )}
+                  aria-hidden="true"
+                >
+                  &rarr;
+                </span>
               )}
             </article>
+          );
+
+          // Make entire card clickable if link is present
+          return href ? (
+            <a key={i} href={href} className="block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+              {cardInner}
+            </a>
+          ) : (
+            <div key={i}>{cardInner}</div>
           );
         })}
       </div>

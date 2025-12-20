@@ -86,7 +86,7 @@ export const enum_pages_blocks_archive_long_card_styles_card4 = pgEnum(
 );
 export const enum_pages_blocks_card_block_cards_variant = pgEnum(
   "enum_pages_blocks_card_block_cards_variant",
-  ["primary", "secondary", "starry"],
+  ["primary", "secondary", "starry", "white"],
 );
 export const enum_pages_blocks_image_content_cells_type = pgEnum(
   "enum_pages_blocks_image_content_cells_type",
@@ -165,7 +165,7 @@ export const enum__pages_v_blocks_archive_long_card_styles_card4 = pgEnum(
 );
 export const enum__pages_v_blocks_card_block_cards_variant = pgEnum(
   "enum__pages_v_blocks_card_block_cards_variant",
-  ["primary", "secondary", "starry"],
+  ["primary", "secondary", "starry", "white"],
 );
 export const enum__pages_v_blocks_image_content_cells_type = pgEnum(
   "enum__pages_v_blocks_image_content_cells_type",
@@ -458,10 +458,12 @@ export const pages_blocks_card_block_cards = pgTable(
     _parentID: varchar("_parent_id").notNull(),
     id: varchar("id").primaryKey(),
     title: varchar("title"),
-    description: varchar("description"),
+    description: jsonb("description"),
     variant:
       enum_pages_blocks_card_block_cards_variant("variant").default("primary"),
+    colSpan: numeric("col_span", { mode: "number" }).default(1),
     rowSpan: numeric("row_span", { mode: "number" }).default(1),
+    link: varchar("link"),
   },
   (columns) => [
     index("pages_blocks_card_block_cards_order_idx").on(columns._order),
@@ -937,12 +939,14 @@ export const _pages_v_blocks_card_block_cards = pgTable(
     _parentID: integer("_parent_id").notNull(),
     id: serial("id").primaryKey(),
     title: varchar("title"),
-    description: varchar("description"),
+    description: jsonb("description"),
     variant:
       enum__pages_v_blocks_card_block_cards_variant("variant").default(
         "primary",
       ),
+    colSpan: numeric("col_span", { mode: "number" }).default(1),
     rowSpan: numeric("row_span", { mode: "number" }).default(1),
+    link: varchar("link"),
     _uuid: varchar("_uuid"),
   },
   (columns) => [

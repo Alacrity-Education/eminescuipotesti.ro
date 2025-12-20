@@ -7,7 +7,7 @@ import { CMSLink } from "@/components/Link";
 
 export const SecondaryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
   return (
-    <div className={"container mx-auto "}>
+    <div className={"container mx-auto max-w-2xl lg:max-w-4xl"}>
     <div className="bg-secondary text-primary relative h-max min-h-64 rounded-xl shadow-2xl sm:min-h-64">
       <div className="relative z-20 flex h-max min-h-64 w-full flex-col rounded p-8 sm:min-h-64">
         <div className="max-w-3xl">

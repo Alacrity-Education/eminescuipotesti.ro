@@ -26,7 +26,8 @@ export const CardBlock: Block = {
         },
         {
           name: "description",
-          type: "textarea",
+          type: "richText",
+          label: "Description",
         },
         {
           name: "variant",
@@ -37,26 +38,35 @@ export const CardBlock: Block = {
             { label: "Primary", value: "primary" },
             { label: "Secondary", value: "secondary" },
             { label: "Starry", value: "starry" },
+            { label: "White", value: "white" },
           ],
         },
-        // colSpan disabled per requirements
-        // {
-        //   name: "colSpan",
-        //   type: "number",
-        //   label: "Column Span (md+)",
-        //   defaultValue: 1,
-        //   admin: { step: 1, description: "1 or 2 columns (on md and larger)" },
-        //   min: 1,
-        //   max: 2,
-        // },
+        {
+          name: "colSpan",
+          type: "number",
+          label: "Column Span (md+)",
+          defaultValue: 1,
+          admin: { step: 1, description: "1 or 2 columns (on md and larger)" },
+          min: 1,
+          max: 2,
+        },
         {
           name: "rowSpan",
           type: "number",
-          label: "Row Span (lg)",
+          label: "Row Span (md)",
           defaultValue: 1,
           admin: { step: 1, description: "1 or 2 rows (on lg screens)" },
           min: 1,
           max: 2,
+        },
+        {
+          name: "link",
+          type: "text",
+          label: "Card Link",
+          admin: {
+            description:
+              "If set, the entire card is clickable and shows an arrow.",
+          },
         },
       ],
     },
