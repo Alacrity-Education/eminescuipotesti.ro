@@ -25,14 +25,13 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
       {title && (
         <h2 className="text-primary py-10 text-center text-base font-semibold md:text-3xl">{title}</h2>
       )}
-      <div className={cn("container mx-auto lg:max-h-[80vh]")}>
+      <div className={cn("container mx-auto")}>
         <div className={cn(
-          // Small screens: single row, horizontal scroll
-          "grid grid-flow-col h-full auto-cols-fr grid-rows-1 gap-4 lg:gap-8 overflow-x-auto",
+          "grid grid-flow-row lg:h-full auto-cols-fr grid-cols-1 gap-4 lg:gap-12",
           // lg+: 2 columns x 2 rows grid
           cells.length >2?
-          "lg:grid-flow-row grid-cols-1 lg:grid-cols-2 lg:grid-rows-2":
-            "lg:grid-flow-row grid-cols-1 lg:grid-cols-2 lg:grid-rows-1"
+          "lg:grid-flow-row  lg:grid-cols-2 lg:grid-rows-2":
+            "lg:grid-flow-row  lg:grid-cols-2 lg:grid-rows-1"
         )}>
           {cells.map((cell, i) => {
             const common = cn("rounded-lg ", cell.spanRows ? "md:row-span-2" : undefined);
@@ -40,7 +39,7 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             if (cell.type === "media" && cell.media) {
               return (
                 <div key={i} className={common}>
-                  <Media resource={cell.media as any} imgClassName="rounded-lg object-cover h-[40vh] w-full" pictureClassName={"w-full h-[40vh]"} />
+                  <Media resource={cell.media as any} imgClassName="rounded-lg object-cover min-h-[40vh] h-full w-full" pictureClassName={"w-full min-h-[40vh] h-full"} />
                 </div>
               );
             }

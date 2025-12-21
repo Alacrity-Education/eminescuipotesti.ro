@@ -21,9 +21,9 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
       data-theme="dark"
     >
       {/* Foreground content */}
-      <div className="font-base relative z-20 container mb-8 flex h-full items-end justify-start">
-        <div className="pb-4 md:text-start max-w-[36.5rem]">
-          {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
+      <div className="font-base relative z-20 container h-screen w-screen mb-8 flex items-center justify-center">
+        <div className="pb-4 md:text-start  max-w-146">
+          {richText && <RichText className="mb-6 invert font-bold" data={richText} enableGutter={false} />}
 
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex flex-wrap gap-4">
@@ -38,11 +38,9 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
           )}
         </div>
       </div>
-
-      {/* Background media with overlay, mirroring HomeHero design */}
-      <div className="absolute inset-0 z-0 select-none">
+      <div className="absolute inset-0 z-0 select-none ">
         {/* Dark Overlay */}
-        <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-transparent via-70% to-transparent opacity-70" />
+        <div className="absolute inset-0 z-10 bg-linear-to-t from-black via-transparent via-90% to-transparent opacity-90" />
 
         {/* Media Component */}
         {media && typeof media === 'object' && (
