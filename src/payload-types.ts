@@ -887,6 +887,8 @@ export interface ImageContentBlock {
           };
           [k: string]: unknown;
         } | null;
+        ctaText?: string | null;
+        ctaHref?: string | null;
         media?: (number | null) | Media;
         id?: string | null;
       }[]
@@ -1371,6 +1373,8 @@ export interface ImageContentBlockSelect<T extends boolean = true> {
         type?: T;
         spanRows?: T;
         richText?: T;
+        ctaText?: T;
+        ctaHref?: T;
         media?: T;
         id?: T;
       };

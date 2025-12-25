@@ -168,3 +168,7 @@ html[data-theme="light"] {
     animation-iteration-count: infinite;
   }
 }
+
+body,html {
+  @apply max-w-screen overflow-x-clip;
+}

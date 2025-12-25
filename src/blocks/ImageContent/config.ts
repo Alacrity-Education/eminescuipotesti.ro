@@ -65,6 +65,22 @@ export const ImageContentBlock: Block = {
           }),
         },
         {
+          name: "ctaText",
+          type: "text",
+          label: "CTA Button Text",
+          admin: {
+            condition: (data, siblingData) => siblingData?.type === "text",
+          },
+        },
+        {
+          name: "ctaHref",
+          type: "text",
+          label: "CTA Button Link",
+          admin: {
+            condition: (data, siblingData) => siblingData?.type === "text",
+          },
+        },
+        {
           name: "media",
           type: "upload",
           relationTo: "media",
@@ -77,4 +93,3 @@ export const ImageContentBlock: Block = {
     },
   ],
 };
-

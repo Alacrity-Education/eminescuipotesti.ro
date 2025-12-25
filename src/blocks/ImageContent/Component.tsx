@@ -7,6 +7,9 @@ type Cell = {
   spanRows?: boolean;
   richText?: unknown;
   media?: unknown;
+  // CTA fields for text cells
+  ctaText?: string;
+  ctaHref?: string;
 };
 
 type Props = {
@@ -45,9 +48,22 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             }
 
             if (cell.type === "text" && cell.richText) {
+              const hasCTA = typeof cell.ctaText === "string" && cell.ctaText.trim().length > 0;
               return (
-                <div key={i} className={cn(common, "p-4 border border-border rounded-lg ")}>
+                <div key={i} className={cn(common, "p-4 border rounded-lg ")}>
                   <RichText data={cell.richText as any} enableGutter={false} />
+                  {hasCTA && (
+                    <div className="mt-6 flex w-full flex-col items-end">
+                      <a
+                        href={cell.ctaHref || "#"}
+                        className={cn(
+                          "btn btn-primary px-6  stars "
+                        )}
+                      >
+                        {cell.ctaText}
+                      </a>
+                    </div>
+                  )}
                 </div>
               );
             }
