@@ -32,13 +32,16 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
         <h2 className="text-primary py-10 text-center text-base font-semibold md:text-3xl">{title}</h2>
       )}
       <div className={cn("container mx-auto")}>
-        <div className={cn(
-          "grid grid-flow-row lg:h-full auto-cols-fr grid-cols-1 gap-4 lg:gap-12"
-        )}
-             style={{
-               gridTemplateColumns: `repeat(${colsLg}, minmax(0, 1fr))`,
-               gridTemplateRows: `repeat(${rowsLg}, minmax(0, 1fr))`
-             }}
+        <div
+          className={cn(
+            "grid gap-4 lg:gap-12",
+            "grid-cols-1", // Default for mobile/tablet
+            "lg:grid-cols-[var(--cols-lg)] lg:grid-rows-[var(--rows-lg)] lg:h-full lg:grid-flow-row" // Only use variables at lg+
+          )}
+          style={{
+            "--cols-lg": `repeat(${colsLg}, minmax(0, 1fr))`,
+            "--rows-lg": `repeat(${rowsLg}, minmax(0, 1fr))`
+          } as React.CSSProperties}
         >
           {cells.map((cell, i) => {
             const spanRows = Math.max(1,  cell.rowSpan || 1);
