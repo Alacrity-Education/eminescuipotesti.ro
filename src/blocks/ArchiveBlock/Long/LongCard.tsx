@@ -86,7 +86,7 @@ export const LongCard: React.FC<{
           30 Decembrie 2025
         </div>
         {description && (
-          <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 lg:line-clamp-3 text-xs sm:text-sm lg:text-sm w-full text-start">
+          <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 lg:line-clamp-3 text-xs sm:text-sm lg:text-sm w-45 lg:w-full text-start">
             {description && <p>{sanitizedDescription}</p>}
           </div>
         )}

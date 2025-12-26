@@ -14,7 +14,7 @@ export const PrimaryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
         <div className="max-w-3xl">
           {richText && (
             <RichText
-              className="mb-0 text-start invert"
+              className="mb-0 text-start text-primary-content"
               data={richText}
               enableGutter={false}
             />

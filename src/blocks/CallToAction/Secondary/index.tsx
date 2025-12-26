@@ -13,7 +13,7 @@ export const SecondaryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
         <div className="max-w-3xl">
           {richText && (
             <RichText
-              className="mb-0 text-start"
+              className="mb-0 text-start text-secondary-content"
               data={richText}
               enableGutter={false}
             />

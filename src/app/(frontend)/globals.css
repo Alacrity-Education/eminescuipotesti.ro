@@ -43,6 +43,26 @@
   --noise: 1;
 }
 
+.text-primary-content{
+  @apply prose-h1:text-primary-content prose-h2:text-primary-content prose-h3:text-primary-content prose-h4:text-primary-content prose-h5:text-primary-content prose-h6:text-primary-content prose-p:text-primary-content ;
+}
+
+.text-secondary-content {
+  @apply prose-h1:text-secondary-content prose-h2:text-secondary-content prose-h3:text-secondary-content prose-h4:text-secondary-content prose-h5:text-secondary-content prose-h6:text-secondary-content prose-p:text-secondary-content ;
+}
+
+.text-accent-content{
+  @apply prose-h1:text-accent-content prose-h2:text-accent-content prose-h3:text-accent-content prose-h4:text-accent-content prose-h5:text-accent-content prose-h6:text-accent-content prose-p:text-accent-content ;
+}
+
+.text-neutral-content{
+  @apply prose-h1:text-neutral-content prose-h2:text-neutral-content prose-h3:text-neutral-content prose-h4:text-neutral-content prose-h5:text-neutral-content prose-h6:text-neutral-content prose-p:text-neutral-content ;
+}
+
+.text-base-content{
+  @apply prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-base-content prose-h4:text-base-content prose-h5:text-base-content prose-h6:text-base-content prose-p:text-base-content ;
+}
+
 @theme {
   --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
 

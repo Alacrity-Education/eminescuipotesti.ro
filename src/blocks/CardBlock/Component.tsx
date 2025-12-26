@@ -101,8 +101,8 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
                 {card?.description && (
                   <div className={
                     card.variant === "white" || card.variant === "secondary"?
-                    "prose prose-sm" :
-                    "prose prose-sm text-white! prose-p:text-white"
+                    "prose prose-sm text-secondary-content" :
+                    "prose prose-sm text-primary-content"
                   }>
 
                     <RichText data={card.description} enableGutter={false} />
