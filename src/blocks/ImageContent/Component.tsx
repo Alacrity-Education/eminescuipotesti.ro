@@ -37,7 +37,7 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             "lg:grid-flow-row  lg:grid-cols-2 lg:grid-rows-1"
         )}>
           {cells.map((cell, i) => {
-            const common = cn("rounded-lg ", cell.spanRows ? "md:row-span-2" : undefined);
+            const common = cn("rounded-lg h-full w-full", cell.spanRows ? "md:row-span-2" : undefined);
 
             if (cell.type === "media" && cell.media) {
               return (
