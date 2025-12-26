@@ -68,6 +68,40 @@ export const CardBlock: Block = {
               "If set, the entire card is clickable and shows an arrow.",
           },
         },
+        // Background image toggle and media
+        {
+          name: "backgroundStyle",
+          type: "select",
+          label: "Background",
+          defaultValue: "none",
+          options: [
+            { label: "None", value: "none" },
+            { label: "Image (PNG)", value: "image" },
+          ],
+        },
+        {
+          name: "backgroundImage",
+          type: "upload",
+          relationTo: "media",
+          label: "Background Image (PNG)",
+          admin: {
+            description: "Shown as an object-cover background when enabled",
+            condition: (data, siblingData) => siblingData?.backgroundStyle === "image",
+          },
+        },
+        {
+          name: "backgroundOpacity",
+          type: "number",
+          label: "Background Overlay Opacity (%)",
+          defaultValue: 10,
+          min: 0,
+          max: 100,
+          admin: {
+            description: "Controls the darkness overlay over the background image",
+            step: 1,
+            condition: (data, siblingData) => siblingData?.backgroundStyle === "image",
+          },
+        },
       ],
     },
   ],

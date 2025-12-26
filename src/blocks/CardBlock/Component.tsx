@@ -2,6 +2,7 @@ import React from "react";
 import type { CardBlock as CardBlockProps } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import RichText from "@/components/RichText";
+import { Media } from "@/components/Media";
 
 type Variant = "primary" | "secondary" | "starry" | "white";
 
@@ -48,42 +49,66 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
           const variant: Variant = rawVariant ?? "primary";
           const isWhite = variant === "white";
           // row and col span support (clamped to 1-2)
-          const rowSpan = Math.min(Math.max(card?.rowSpan ?? 1, 1), 2);
-          const colSpan = Math.min(Math.max(card?.colSpan ?? 1, 1), 2);
+          const rowSpan = Math.min(Math.max((card as any)?.rowSpan ?? 1, 1), 2);
+          const colSpan = Math.min(Math.max((card as any)?.colSpan ?? 1, 1), 2);
           const spanClasses = cn(
             // apply spans from md and up
             rowSpan === 2 ? "md:row-span-2" : "md:row-span-1",
             colSpan === 2 ? "md:col-span-2 lg:col-span-2" : "md:col-span-1 lg:col-span-1",
           );
 
-          // Safe read of optional link until types are regenerated
           const cardRecord = card as Record<string, unknown>;
           const href = typeof cardRecord.link === "string" ? (cardRecord.link as string) : undefined;
+
+          // Background controls
+          const bgStyle = (cardRecord.backgroundStyle as string) || "none";
+          const bgMedia = cardRecord.backgroundImage as any;
+          const bgOpacityPct = typeof cardRecord.backgroundOpacity === "number" ? cardRecord.backgroundOpacity : 100;
+          const bgOpacity = Math.max(0, Math.min(100, bgOpacityPct)) / 100;
 
           const cardInner = (
             <article
               className={cn(
-                "relative rounded-lg p-8 h-full w-full min-h-64",
+                "relative rounded-lg p-8 h-full w-full min-h-64 overflow-hidden",
                 // apply shadow except for white variant
-                  !isWhite && "shadow-xl hover:shadow-2xl transition-shadow duration-300",
+                !isWhite && "shadow-xl hover:shadow-2xl transition-shadow duration-300",
                 getVariantClasses(variant),
                 spanClasses,
               )}
             >
-              {card?.title && (
-                <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-              )}
+              {/* Background image layer */}
+              {bgStyle === "image" && bgMedia && (
+                <div
+                  style={{ 'opacity': bgOpacity }}
+                  className="absolute inset-0 z-0 select-none">
+                  <Media
+                    fill
 
-              {card?.description && (
-                <div className={
-                  card.variant === "white" || card.variant === "secondary"?
-                  "prose prose-sm" :
-                  "prose prose-sm prose-invert"
-                }>
+                    resource={bgMedia}
+                    pictureClassName={"absolute inset-0 "}
+                    imgClassName="h-full w-full object-cover z-0"
+                  />
 
-                  <RichText data={card.description} enableGutter={false} />
                 </div>
               )}
+
+              {/* Foreground content */}
+              <div className="relative z-10">
+                {card?.title && (
+                  <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+                )}
+
+                {card?.description && (
+                  <div className={
+                    card.variant === "white" || card.variant === "secondary"?
+                    "prose prose-sm" :
+                    "prose prose-sm text-white! prose-p:text-white"
+                  }>
+
+                    <RichText data={card.description} enableGutter={false} />
+                  </div>
+                )}
+              </div>
 
               {/* Arrow indicator when link exists */}
               {href && (

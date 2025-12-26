@@ -838,6 +838,15 @@ export interface CardBlock {
          * If set, the entire card is clickable and shows an arrow.
          */
         link?: string | null;
+        backgroundStyle?: ('none' | 'image') | null;
+        /**
+         * Shown as an object-cover background when enabled
+         */
+        backgroundImage?: (number | null) | Media;
+        /**
+         * Controls the darkness overlay over the background image
+         */
+        backgroundOpacity?: number | null;
         id?: string | null;
       }[]
     | null;
@@ -1338,6 +1347,9 @@ export interface CardBlockSelect<T extends boolean = true> {
         colSpan?: T;
         rowSpan?: T;
         link?: T;
+        backgroundStyle?: T;
+        backgroundImage?: T;
+        backgroundOpacity?: T;
         id?: T;
       };
   id?: T;
