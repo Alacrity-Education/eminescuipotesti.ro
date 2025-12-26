@@ -68,9 +68,8 @@ export const LongCard: React.FC<{
           />
         )}
       </div>
-      <div className="pr-2 lg:pr-0  h-52 min-w-7/12 grow text-base lg:h-52 lg:w-70 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
+      <div className="pr-2 lg:pr-0  h-52  grow text-base lg:h-52 lg:w-70 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
         {titleToUse && (
-
               <Link
                 className=" w-45 lg:w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"
                 href={href}
@@ -80,7 +79,6 @@ export const LongCard: React.FC<{
                 {titleToUse}
                 </h3>
               </Link>
-
         )}
         <div className="not-prose w-full text-start text-sm sm:text-lg  mb-2 lg:mb-2 lg:text-lg">
           30 Decembrie 2025

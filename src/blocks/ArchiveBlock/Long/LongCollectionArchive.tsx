@@ -16,9 +16,6 @@ export const LongCollectionArchive: React.FC<Props> = ({ posts, styles }) => {
         <div
           className={cn(
             "relative flex w-full  flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid lg:min-h-[70dvh] lg:grid-cols-3 lg:gap-4 xl:grid-cols-4 xl:gap-4",
-            // CSS-only visibility rules:
-            // - On lg: hide 4th and beyond
-            // - On xl: show 4th, hide 5th and beyond
             "lg:[&>*:nth-child(n+4)]:hidden xl:[&>*:nth-child(n+4)]:flex xl:[&>*:nth-child(n+5)]:hidden"
           )}
         >
