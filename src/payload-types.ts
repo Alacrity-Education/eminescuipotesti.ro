@@ -882,7 +882,7 @@ export interface ImageContentBlock {
    */
   colsLg?: number | null;
   /**
-   * Number of rows at lg breakpoint (1-4)
+   * Number of rows at lg breakpoint
    */
   rowsLg?: number | null;
   cells?:
@@ -891,7 +891,7 @@ export interface ImageContentBlock {
         /**
          * How many rows this cell spans on md+ (1-2)
          */
-        rowSpans?: number | null;
+        rowSpan?: number | null;
         richText?: {
           root: {
             type: string;
@@ -1396,7 +1396,7 @@ export interface ImageContentBlockSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
-        rowSpans?: T;
+        rowSpan?: T;
         richText?: T;
         ctaText?: T;
         ctaHref?: T;

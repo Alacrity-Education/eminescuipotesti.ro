@@ -35,8 +35,8 @@ export const ImageContentBlock: Block = {
       label: "Rows on Large Screens",
       defaultValue: 2,
       min: 1,
-      max: 4,
-      admin: { description: "Number of rows at lg breakpoint (1-4)" },
+
+      admin: { description: "Number of rows at lg breakpoint" },
     },
     {
       name: "cells",
@@ -61,12 +61,12 @@ export const ImageContentBlock: Block = {
           required: true,
         },
         {
-          name: "rowSpans",
+          name: "rowSpan",
           type: "number",
           label: "Row Span (md+)",
           defaultValue: 1,
           min: 1,
-          max: 2,
+
           admin: { description: "How many rows this cell spans on md+ (1-2)" },
         },
         {

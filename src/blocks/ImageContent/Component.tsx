@@ -25,9 +25,6 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
 
   if (!cells || !Array.isArray(cells) || cells.length === 0) return null;
 
-  // Map numeric cols/rows to tailwind classes (1-4)
-  const colsClass = colsLg === 1 ? "lg:grid-cols-1" : colsLg === 2 ? "lg:grid-cols-2" : colsLg === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
-  const rowsClass = rowsLg === 1 ? "lg:grid-rows-1" : rowsLg === 2 ? "lg:grid-rows-2" : rowsLg === 3 ? "lg:grid-rows-3" : "lg:grid-rows-4";
 
   return (
     <div className="w-full">
@@ -36,17 +33,21 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
       )}
       <div className={cn("container mx-auto")}>
         <div className={cn(
-          "grid grid-flow-row lg:h-full auto-cols-fr grid-cols-1 gap-4 lg:gap-12",
-          colsClass,
-          rowsClass,
-        )}>
+          "grid grid-flow-row lg:h-full auto-cols-fr grid-cols-1 gap-4 lg:gap-12"
+        )}
+             style={{
+               gridTemplateColumns: `repeat(${colsLg}, minmax(0, 1fr))`,
+               gridTemplateRows: `repeat(${rowsLg}, minmax(0, 1fr))`
+             }}
+        >
           {cells.map((cell, i) => {
-            const spanRows = Math.max(1, Math.min(2, cell.rowSpan ?? 1));
-            const common = cn("rounded-lg h-full w-full", spanRows === 2 ? "md:row-span-2" : undefined);
+            const spanRows = Math.max(1,  cell.rowSpan || 1);
+
+            const common = cn("rounded-lg h-full w-full" );
 
             if (cell.type === "media" && cell.media) {
               return (
-                <div key={i} className={common}>
+                <div style={{ gridRow: `span ${spanRows} / span ${spanRows}` }} key={i} className={common}>
                   <Media resource={cell.media as any} imgClassName="rounded-lg object-cover min-h-[40vh] h-full w-full" pictureClassName={"w-full min-h-[40vh] h-full"} />
                 </div>
               );
@@ -55,7 +56,7 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             if (cell.type === "text" && cell.richText) {
               const hasCTA = typeof cell.ctaText === "string" && cell.ctaText.trim().length > 0;
               return (
-                <div key={i} className={cn(common, "p-4  border rounded-lg flex flex-col")}>
+                <div style={{ gridRow: `span ${spanRows} / span ${spanRows}` }} key={i} className={cn(common, "p-4  border rounded-lg flex flex-col")}>
                   <RichText data={cell.richText as any} enableGutter={false} className={"text-start m-0!"} />
                   <div className={"grow"}></div>
                   {hasCTA && (
