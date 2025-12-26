@@ -50,7 +50,7 @@ export async function Footer() {
                   {(firstSection.links || []).map(({ link }, j) => (
                     <li key={j}>
                       <CMSLink
-                        className="text-footer-muted hover:text-footer-foreground transition-colors text-sm"
+                        className="text-footer-muted hover:text-footer-foreground transition-colors text-sm hover:cursor-pointer hover:underline"
                         {...link}
                       />
                     </li>
