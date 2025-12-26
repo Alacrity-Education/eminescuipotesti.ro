@@ -50,14 +50,15 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
             if (cell.type === "text" && cell.richText) {
               const hasCTA = typeof cell.ctaText === "string" && cell.ctaText.trim().length > 0;
               return (
-                <div key={i} className={cn(common, "p-4 border rounded-lg ")}>
-                  <RichText data={cell.richText as any} enableGutter={false} />
+                <div key={i} className={cn(common, "p-4 lg:pb-0 border rounded-lg flex flex-col")}>
+                  <RichText data={cell.richText as any} enableGutter={false} className={"text-start m-0!"} />
+                  <div className={"grow"}></div>
                   {hasCTA && (
                     <div className="mt-6 flex w-full flex-col items-end">
                       <a
                         href={cell.ctaHref || "#"}
                         className={cn(
-                          "btn btn-primary px-6  stars "
+                          "btn btn-primary px-6"
                         )}
                       >
                         {cell.ctaText}
