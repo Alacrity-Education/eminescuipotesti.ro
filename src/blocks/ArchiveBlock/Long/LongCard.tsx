@@ -15,6 +15,7 @@ export const LongCard: React.FC<{
   className?: string;
   doc?: CardPostData;
   relationTo?: "posts";
+
   showCategories?: boolean;
   title?: string;
   variant?: "primary" | "secondary" | "starry" | "transparent";
@@ -28,7 +29,7 @@ export const LongCard: React.FC<{
     variant = "primary",
   } = props;
 
-  const { slug, meta, title } = doc || {};
+  const { slug, meta, title, eventDate } = doc || {};
   const { description, image: metaImage } = meta || {};
 
   const titleToUse = titleFromProps || title;
@@ -57,7 +58,7 @@ export const LongCard: React.FC<{
       <button className="btn-primary btn btn-sm hidden lg:inline-block">
         Citeste mai mult &rarr;
       </button>
-      <div className="relative h-60 w-40 lg:h-100 lg:w-70 xl:h-100">
+      <div className="relative h-60 w-60 lg:h-100 lg:w-70 xl:h-100">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== "string" && (
           <Media
@@ -68,10 +69,10 @@ export const LongCard: React.FC<{
           />
         )}
       </div>
-      <div className="pr-2 lg:pr-0  h-52  grow text-base lg:h-52 lg:w-70 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
+      <div className=" lg:pr-0 max-w-full w-full h-52  md:grow text-base lg:h-52 lg:w-70 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
         {titleToUse && (
               <Link
-                className=" w-45 lg:w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"
+                className=" w-40 lg:w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"
                 href={href}
                 ref={link.ref}
               >
@@ -80,11 +81,12 @@ export const LongCard: React.FC<{
                 </h3>
               </Link>
         )}
-        <div className="not-prose w-full text-start text-sm sm:text-lg  mb-2 lg:mb-2 lg:text-lg">
-          30 Decembrie 2025
-        </div>
+        {eventDate && <div className="not-prose w-40 lg:w-full text-start text-sm sm:text-lg  mb-2 lg:mb-2 lg:text-lg">
+
+          Data: {new Date(eventDate).toLocaleDateString()}
+        </div>}
         {description && (
-          <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 lg:line-clamp-3 text-xs sm:text-sm lg:text-sm w-45 lg:w-full text-start">
+          <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 lg:line-clamp-3 text-xs sm:text-sm lg:text-sm w-40 lg:w-full text-start">
             {description && <p>{sanitizedDescription}</p>}
           </div>
         )}

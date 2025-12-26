@@ -162,6 +162,25 @@ export const Posts: CollectionConfig<'posts'> = {
       ],
     },
     {
+      name: 'eventDate',
+      type: 'date',
+      admin: {
+        date: {
+          pickerAppearance: 'dayAndTime',
+        },
+      },
+      hooks:{
+        beforeChange: [
+          ({ siblingData, value }) => {
+            if (siblingData._status === 'published' && !value) {
+              return new Date()
+            }
+            return value
+          },
+        ],
+      }
+    },
+    {
       name: 'publishedAt',
       type: 'date',
       admin: {
