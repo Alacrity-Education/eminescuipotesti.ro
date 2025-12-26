@@ -72,7 +72,7 @@ export const LongCard: React.FC<{
         {titleToUse && (
 
               <Link
-                className=" w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"
+                className=" w-45 lg:w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"
                 href={href}
                 ref={link.ref}
               >
