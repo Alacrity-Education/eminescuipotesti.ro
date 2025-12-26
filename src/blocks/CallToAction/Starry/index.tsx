@@ -14,7 +14,7 @@ export const StarryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
         <div className="max-w-3xl">
           {richText && (
             <RichText
-              className="mb-0 text-start invert"
+              className="mb-0 text-start text-white!"
               data={richText}
               enableGutter={false}
               color="white"

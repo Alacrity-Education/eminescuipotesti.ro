@@ -15,10 +15,10 @@ interface HeaderClientProps {
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   return (
-    <header className="font-base to-neutral/30 relative z-50 w-screen bg-linear-to-r from-[#0D1B46] via-[#2143AC] via-40% backdrop-blur-md sm:via-20% md:to-50%">
+    <header className="font-base to-primary/50 relative z-50 w-screen bg-linear-to-r from-white via-white via-40% backdrop-blur-md sm:via-20% md:to-50%">
       <div className="container mx-auto flex w-full justify-between py-2">
         <Link href="/">
-          <Logo loading="eager" priority="high" className="invert" />
+          <Logo loading="eager" priority="high" className="" />
         </Link>
         <HeaderNav data={data} />
       </div>
