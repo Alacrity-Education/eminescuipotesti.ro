@@ -73,7 +73,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
                 // apply shadow except for white variant
                 !isWhite && "shadow-xl hover:shadow-2xl transition-shadow duration-300",
                 getVariantClasses(variant),
-                spanClasses,
+
               )}
             >
               {/* Background image layer */}
@@ -130,11 +130,11 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
 
           // Make entire card clickable if link is present
           return href ? (
-            <a key={i} href={href} className="block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+            <a key={i} href={href} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
             </a>
           ) : (
-            <div key={i}>{cardInner}</div>
+            <div className={cn(spanClasses," h-full w-full")} key={i}>{cardInner}</div>
           );
         })}
       </div>
