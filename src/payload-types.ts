@@ -877,10 +877,21 @@ export interface LogoCarouselBlock {
  */
 export interface ImageContentBlock {
   title?: string | null;
+  /**
+   * Number of columns at lg breakpoint (1-4)
+   */
+  colsLg?: number | null;
+  /**
+   * Number of rows at lg breakpoint (1-4)
+   */
+  rowsLg?: number | null;
   cells?:
     | {
         type: 'text' | 'media';
-        spanRows?: boolean | null;
+        /**
+         * How many rows this cell spans on md+ (1-2)
+         */
+        rowSpans?: number | null;
         richText?: {
           root: {
             type: string;
@@ -1379,11 +1390,13 @@ export interface LogoCarouselBlockSelect<T extends boolean = true> {
  */
 export interface ImageContentBlockSelect<T extends boolean = true> {
   title?: T;
+  colsLg?: T;
+  rowsLg?: T;
   cells?:
     | T
     | {
         type?: T;
-        spanRows?: T;
+        rowSpans?: T;
         richText?: T;
         ctaText?: T;
         ctaHref?: T;

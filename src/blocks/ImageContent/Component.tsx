@@ -2,12 +2,12 @@ import React from "react";
 import { Media } from "@/components/Media";
 import RichText from "@/components/RichText";
 import { cn } from "@/utilities/ui";
+
 type Cell = {
   type: 'text' | 'media';
-  spanRows?: boolean;
+  rowSpan?: number; // numeric row span
   richText?: unknown;
   media?: unknown;
-  // CTA fields for text cells
   ctaText?: string;
   ctaHref?: string;
 };
@@ -15,13 +15,19 @@ type Cell = {
 type Props = {
   title?: string;
   cells?: Cell[];
+  colsLg?: number; // dynamic lg columns
+  rowsLg?: number; // dynamic lg rows
   disableInnerContainer?: boolean;
 };
 
 export const ImageContentBlock: React.FC<Props> = (props) => {
-  const { title, cells } = props || {};
+  const { title, cells, colsLg = 2, rowsLg = 2 } = props || {};
 
   if (!cells || !Array.isArray(cells) || cells.length === 0) return null;
+
+  // Map numeric cols/rows to tailwind classes (1-4)
+  const colsClass = colsLg === 1 ? "lg:grid-cols-1" : colsLg === 2 ? "lg:grid-cols-2" : colsLg === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
+  const rowsClass = rowsLg === 1 ? "lg:grid-rows-1" : rowsLg === 2 ? "lg:grid-rows-2" : rowsLg === 3 ? "lg:grid-rows-3" : "lg:grid-rows-4";
 
   return (
     <div className="w-full">
@@ -31,13 +37,12 @@ export const ImageContentBlock: React.FC<Props> = (props) => {
       <div className={cn("container mx-auto")}>
         <div className={cn(
           "grid grid-flow-row lg:h-full auto-cols-fr grid-cols-1 gap-4 lg:gap-12",
-          // lg+: 2 columns x 2 rows grid
-          cells.length >2?
-          "lg:grid-flow-row  lg:grid-cols-2 lg:grid-rows-2":
-            "lg:grid-flow-row  lg:grid-cols-2 lg:grid-rows-1"
+          colsClass,
+          rowsClass,
         )}>
           {cells.map((cell, i) => {
-            const common = cn("rounded-lg h-full w-full", cell.spanRows ? "md:row-span-2" : undefined);
+            const spanRows = Math.max(1, Math.min(2, cell.rowSpan ?? 1));
+            const common = cn("rounded-lg h-full w-full", spanRows === 2 ? "md:row-span-2" : undefined);
 
             if (cell.type === "media" && cell.media) {
               return (
