@@ -23,7 +23,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
       {/* Foreground content */}
       <div className="font-base relative z-20 container h-screen w-screen mb-8 flex items-center justify-center">
         <div className="pb-4 md:text-start  max-w-146">
-          {richText && <RichText className="mb-6 invert font-bold" data={richText} enableGutter={false} />}
+          {richText && <RichText className="mb-6 text-neutral-content font-bold" data={richText} enableGutter={false} />}
 
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex flex-wrap gap-4">
