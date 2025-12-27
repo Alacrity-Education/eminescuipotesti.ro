@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { CallToActionBlock as CTABlockProps } from "@/payload-types";
+import type { CallToActionBlock as CTABlockProps, Form } from "@/payload-types";
 
 import { CTAPrimitive } from "../Primitive";
 
@@ -11,7 +11,11 @@ export const StarryCTA: React.FC<CTABlockProps> = (props) => {
         {/* Keep starry decorations */}
         <StarryBackground />
         <div className="relative z-50">
-          <CTAPrimitive {...props} bgToken="transparent" textToken="primary" buttonToken="primary" />
+          <CTAPrimitive
+
+            {...props}
+            form={props.form as Form | undefined | null}
+            bgToken="transparent" textToken="primary" buttonToken="primary" />
         </div>
       </div>
     </div>

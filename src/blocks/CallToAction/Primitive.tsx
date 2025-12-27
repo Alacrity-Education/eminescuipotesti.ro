@@ -4,7 +4,7 @@ import RichText from "@/components/RichText";
 import { CMSLink } from "@/components/Link";
 import { Media } from "@/components/Media";
 import { CTAModal } from "./Primitive.client";
-import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
+import type {  Form as FormType } from "@/payload-types";
 
 // Token types for colors
 type ColorToken = "primary" | "secondary" | "neutral" | "base" | "transparent";
@@ -17,8 +17,7 @@ type PrimitiveProps = CTABlockProps & {
   useMediaBackground?: boolean;
   // Modal variant support
   ctaType?: "links" | "modal" | null;
-  form?: FormType;
-  modalButtonText?: string;
+  form?: FormType | undefined | null;
 };
 
 // Maps a token to tailwind classes for background/text/button
@@ -87,7 +86,7 @@ export const CTAPrimitive: React.FC<PrimitiveProps> = ({
           </div>
           <div className="grow"></div>
           <div className="max-w flex flex-row gap-8">
-            {ctaType === "modal" ? (
+            {ctaType === "modal" && form ? (
               <CTAModal id="cta_modal" buttonText={modalButtonText || "Open"} form={form} buttonClassName={buttonClass} />
             ) : (
               (links || []).map(({ link }, i) => {
