@@ -26,7 +26,7 @@ export const CTAModal: React.FC<CTAModalProps> = ({ id = "cta_modal", buttonText
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
-          {form && form.confirmationType!==undefined && form.confirmationMessage ? (
+          {form ? (
             <FormRenderer id={`${id}-form`} form={form as any} enableIntro={false} />
           ) : (
             <div>No form selected</div>

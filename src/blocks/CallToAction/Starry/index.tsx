@@ -15,7 +15,7 @@ export const StarryCTA: React.FC<CTABlockProps> = (props) => {
 
             {...props}
             form={props.form as Form | undefined | null}
-            bgToken="transparent" textToken="primary" buttonToken="primary" />
+            bgToken="transparent" textToken="primary" buttonToken="base" />
         </div>
       </div>
     </div>
