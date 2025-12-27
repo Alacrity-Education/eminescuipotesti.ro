@@ -2,33 +2,18 @@ import React from "react";
 
 import type { CallToActionBlock as CTABlockProps } from "@/payload-types";
 
-import RichText from "@/components/RichText";
-import { CMSLink } from "@/components/Link";
+import { CTAPrimitive } from "../Primitive";
 
-export const StarryCTA: React.FC<CTABlockProps> = ({ links, richText }) => {
+export const StarryCTA: React.FC<CTABlockProps> = (props) => {
   return (
     <div className={"container mx-auto max-w-2xl lg:max-w-4xl"}>
-    <div className="relative h-max min-h-64 rounded-xl shadow-2xl sm:min-h-64">
-      <StarryBackground />
-      <div className="relative z-50 flex h-max min-h-64 w-full flex-col rounded p-8 sm:min-h-64">
-        <div className="max-w-3xl">
-          {richText && (
-            <RichText
-              className="mb-0 text-start text-primary-content"
-              data={richText}
-              enableGutter={false}
-              color="white"
-            />
-          )}
-        </div>
-        <div className="grow"></div>
-        <div className="max-w flex flex-row gap-8">
-          {(links || []).map(({ link }, i) => {
-            return <CMSLink key={i} size="lg" {...link} />;
-          })}
+      <div className="relative h-max min-h-64 rounded-xl shadow-2xl sm:min-h-64">
+        {/* Keep starry decorations */}
+        <StarryBackground />
+        <div className="relative z-50">
+          <CTAPrimitive {...props} bgToken="transparent" textToken="primary" buttonToken="primary" />
         </div>
       </div>
-    </div>
     </div>
   );
 };

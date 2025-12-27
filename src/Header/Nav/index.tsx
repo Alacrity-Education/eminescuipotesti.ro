@@ -20,7 +20,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             key={i}
             {...link}
             appearance="link"
-            className="bg-neutral/30 hidden md:inline-block text-neutral-content border-neutral/20 hover:bg-neutral/70 border shadow-none transition hover:shadow-md"
+            className="btn btn-sm btn-ghost bg-base-100/20 text-white hidden md:inline-flex "
           />
         );
       })}
@@ -28,7 +28,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         <summary className="btn btn-ghost btn-xs m-1">
           <MenuIcon className="h-full" />
         </summary>
-        <ul className="menu dropdown-content rounded-box bg-neutral/20 z-1 mt-3 w-52 p-2 shadow-sm backdrop-blur-md">
+        <ul className="menu dropdown-content rounded-box bg-base-100/80 z-1 mt-3 w-52 p-1 shadow-sm backdrop-blur-xl">
           {navItems.map(({ link }, i) => {
             return (
               <li key={i}>
@@ -36,7 +36,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
 
                   {...link}
                   appearance="link"
-                  className="bg-neutral/50 text-neutral-content border-neutral/20 hover:bg-neutral/70 border shadow-none transition hover:shadow-md"
+                  className="btn btn-xs   btn-neutral text-white "
                 />
               </li>
             );

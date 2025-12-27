@@ -36,6 +36,8 @@ export const Archive: Block = {
       type: "select",
       options: [
         { label: "Long", value: "long" },
+        { label: "Cards (mobile)", value: "cards" },
+        { label: "List", value: "list" },
       ],
       defaultValue: "long",
     },
@@ -102,9 +104,9 @@ export const Archive: Block = {
     {
       name: "longCardStyles",
       type: "group",
-      label: "Long Card Styles",
+      label: "Card Styles",
       admin: {
-        condition: (_, siblingData) => siblingData.style === "long",
+        condition: (_, siblingData) => siblingData.style === "long" || siblingData.style === "cards",
       },
       fields: [
         {

@@ -53,10 +53,40 @@ export const CallToAction: Block = {
         },
       },
     },
+    {
+      name: "ctaType",
+      type: "select",
+      label: "CTA Type",
+      defaultValue: "links",
+      options: [
+        { label: "Links", value: "links" },
+        { label: "Modal", value: "modal" },
+      ],
+    },
+    {
+      name: "modalButtonText",
+      type: "text",
+      label: "Modal Button Text",
+      admin: {
+        condition: (_, sibling) => sibling?.ctaType === "modal",
+      },
+    },
+    {
+      name: "form",
+      type: "relationship",
+      relationTo: "forms",
+      label: "Form to render",
+      admin: {
+        condition: (_, sibling) => sibling?.ctaType === "modal",
+      },
+    },
     linkGroup({
       appearances: ["default", "outline"],
       overrides: {
         maxRows: 2,
+        admin: {
+          condition: (_, sibling) => sibling?.ctaType !== "modal",
+        },
       },
     }),
   ],

@@ -17,8 +17,8 @@ export const PostHero: React.FC<{
     formatAuthors(populatedAuthors) !== "";
 
   return (
-    <div className="relative -mt-[10.4rem] flex items-end">
-      <div className="relative z-10 container pb-8 text-white lg:grid lg:grid-cols-[1fr_48rem_1fr]">
+    <div className="relative -mt-[9rem] min-h-[80vh] flex items-end">
+      <div className="relative z-10 container pb-8 z-10 text-white lg:grid lg:grid-cols-[1fr_48rem_1fr]">
         <div className="col-span-1 col-start-1 md:col-span-2 md:col-start-2">
           <div className="mb-6 text-sm uppercase">
             {categories?.map((category, index) => {
@@ -66,12 +66,14 @@ export const PostHero: React.FC<{
           </div>
         </div>
       </div>
-      <div className="min-h-[80vh] select-none">
+      <div className="min-h-[80vh] w-full select-none absolute top-0 left-0 inset-0">
         {heroImage && typeof heroImage !== "string" && (
           <Media
             fill
             priority
-            imgClassName="-z-10 object-cover"
+            className={"h-full w-full"}
+            imgClassName="z-0 object-cover"
+            pictureClassName={"h-full w-full"}
             resource={heroImage}
           />
         )}

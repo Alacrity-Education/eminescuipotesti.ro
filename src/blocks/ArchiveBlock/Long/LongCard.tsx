@@ -29,6 +29,7 @@ export const LongCard: React.FC<{
     variant = "primary",
   } = props;
 
+  // @ts-ignore
   const { slug, meta, title, eventDate } = doc || {};
   const { description, image: metaImage } = meta || {};
 

@@ -69,21 +69,20 @@ export const ListArchiveBlock: React.FC<
         </div>
       )}
       <ul className={cn(
-        "divide-y divide-border rounded-lg border border-border bg-card",
+        "divide-y divide-border rounded-lg border border-border bg-card text-base-content",
         "sm:p-2 md:p-4"
       )}>
         {posts.map((post, i) => (
           <li key={i} className={cn(
-            "flex flex-col gap-2 p-3",
+            "flex flex-col gap-2 p-3 text-base-content",
             "sm:flex-row sm:items-center sm:justify-between"
           )}>
             <div className="min-w-0">
-              <CMSLink url={typeof post === 'object' ? `/posts/${post.slug}` : '#'} className="line-clamp-2 font-medium text-foreground hover:text-primary">
+              <CMSLink url={typeof post === 'object' ? `/posts/${post.slug}` : '#'} className="line-clamp-2 font-medium hover:text-primary">
                 {typeof post === 'object' ? post.title : ''}
               </CMSLink>
-              {/* Optional excerpt removed due to type mismatch; keep simple and clean */}
             </div>
-            <div className="flex shrink-0 flex-wrap items-center gap-2 text-xs text-muted-foreground">
+            <div className="flex shrink-0 flex-wrap items-center gap-2 text-xs">
               {typeof post === 'object' && Array.isArray(post.categories) && post.categories.map((cat, idx) => (
                 <span key={idx} className="rounded-full border border-border px-2 py-0.5">{typeof cat === 'object' ? cat.title : ''}</span>
               ))}

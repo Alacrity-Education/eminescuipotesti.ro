@@ -3,9 +3,13 @@ import React from "react";
 import type { ArchiveBlock as ArchiveBlockProps } from "@/payload-types";
 
 import { LongArchiveBlock } from "./Long";
+import { CardsArchiveBlock } from "./Cards";
+import { ListArchiveBlock } from "./List";
 
 const variants = {
   long: LongArchiveBlock,
+  cards: CardsArchiveBlock,
+  list: ListArchiveBlock,
 };
 
 export const ArchiveBlock: React.FC<
@@ -14,11 +18,10 @@ export const ArchiveBlock: React.FC<
   }
 > = (props) => {
   const { style, title } = props || {};
-  console.log("ArchiveBlock props:", style);
 
   if (!style) return null;
 
-  const ArchiveBlockToRender = variants[style];
+  const ArchiveBlockToRender = variants[style as keyof typeof variants];
 
   if (!ArchiveBlockToRender) return null;
 

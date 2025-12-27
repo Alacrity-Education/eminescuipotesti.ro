@@ -20,7 +20,7 @@ export const LongCollectionArchive: React.FC<Props> = ({ posts, styles }) => {
           )}
         >
           {posts?.map((result, index) => {
-            
+
             const styleVariant = styles?.[index] ?? "primary";
             return typeof result === "object" && result !== null ? (
               <LongCard

@@ -18,6 +18,7 @@ export type FormBlockType = {
   blockName?: string;
   blockType?: "formBlock";
   enableIntro: boolean;
+  showTitle?: boolean;
   form: FormType;
   introContent?: DefaultTypedEditorState;
 };
@@ -29,9 +30,11 @@ export const FormBlock: React.FC<
 > = (props) => {
   const {
     enableIntro,
+    showTitle,
     form: formFromProps,
     form: {
       id: formID,
+      title: formTitle,
       confirmationMessage,
       confirmationType,
       redirect,
@@ -129,6 +132,9 @@ export const FormBlock: React.FC<
 
   return (
     <div className="container mx-auto border-0 lg:max-w-3xl">
+      {showTitle && formTitle && !hasSubmitted && (
+        <h2 className="text-lg text-primary text-center mb-4">{formTitle}</h2>
+      )}
       {enableIntro && introContent && !hasSubmitted && (
         <RichText
           className="mb-8 lg:mb-12"
@@ -139,7 +145,7 @@ export const FormBlock: React.FC<
       <div className="border-border rounded-[0.8rem] border p-4 lg:p-6">
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === "message" && (
-            <RichText data={confirmationMessage} />
+            <RichText className={"text-base-content"} data={confirmationMessage} />
           )}
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
           {error && (

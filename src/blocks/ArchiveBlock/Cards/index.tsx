@@ -5,6 +5,8 @@ import { getPayload } from "payload";
 import React from "react";
 import RichText from "@/components/RichText";
 import { cn } from "@/utilities/ui";
+import Link from "next/link";
+import { Media } from "@/components/Media";
 
 export const CardsArchiveBlock: React.FC<
   ArchiveBlockProps & {
@@ -18,9 +20,17 @@ export const CardsArchiveBlock: React.FC<
     limit: limitFromProps,
     populateBy,
     selectedDocs,
+    longCardStyles,
   } = props;
 
-  const limit = limitFromProps || 3;
+  const styles: ("primary" | "secondary" | "starry" | "transparent")[] = [
+    longCardStyles?.card1 ?? "primary",
+    longCardStyles?.card2 ?? "secondary",
+    longCardStyles?.card3 ?? "starry",
+    longCardStyles?.card4 ?? "transparent",
+  ];
+
+  const limit = limitFromProps || 6;
 
   let posts: Post[] = [];
 
@@ -50,18 +60,25 @@ export const CardsArchiveBlock: React.FC<
     posts = fetchedPosts.docs;
   } else {
     if (selectedDocs?.length) {
-      const filteredSelectedPosts = selectedDocs.map((post) => {
-        if (typeof post.value === "object") return post.value;
-      }) as Post[];
-
-      posts = filteredSelectedPosts;
+      posts = selectedDocs
+        .map((post) => (typeof post.value === "object" ? post.value : null))
+        .filter(Boolean) as Post[];
     }
   }
 
+  const getVariantClasses = (variant: "primary" | "secondary" | "starry" | "transparent") =>
+    variant === "primary"
+      ? "bg-primary text-primary-content"
+      : variant === "secondary"
+      ? "bg-secondary text-secondary-content"
+      : variant === "transparent"
+      ? "bg-base-100 text-base-content border border-neutral/20"
+      : "bg-gradient-to-tr from-primary to-black stars [--star-scale:200px] text-primary-content";
+
   return (
-    <div className="container mx-auto my-16" id={`block-${id}`}>
+    <div className="container mx-auto my-8" id={`block-${id}`}>
       {introContent && (
-        <div className="container mb-16">
+        <div className="container mb-6">
           <RichText
             className="ms-0 max-w-3xl"
             data={introContent}
@@ -70,67 +87,67 @@ export const CardsArchiveBlock: React.FC<
         </div>
       )}
       <div className={cn("w-full")}>
-        {(() => {
-          const count = posts.length;
-          // md breakpoint: 2 cols
-          const mdRows = count <= 2 ? 1 : Math.ceil(Math.min(count, 8) / 2);
-          const mdRowsClass =
-            mdRows === 1
-              ? "md:grid-rows-1"
-              : mdRows === 2
-              ? "md:grid-rows-2"
-              : "md:grid-rows-3";
-          // lg breakpoint: 3 cols
-          const lgRows = count <= 3 ? 1 : Math.ceil(count / 3);
-          const lgRowsClass =
-            lgRows === 1
-              ? "lg:grid-rows-1"
-              : lgRows === 2
-              ? "lg:grid-rows-2"
-              : lgRows >= 3
-              ? "lg:grid-rows-3"
-              : "";
-          // xl breakpoint: 4 cols
-          const xlRows = count <= 4 ? 1 : Math.ceil(count / 4);
-          const xlRowsClass =
-            xlRows === 1
-              ? "xl:grid-rows-1"
-              : xlRows === 2
-              ? "xl:grid-rows-2"
-              : xlRows >= 3
-              ? "xl:grid-rows-3"
-              : "";
+        <div
+          className={cn(
+            "grid grid-cols-1 gap-4",
+            "sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
+          )}
+        >
+          {posts?.map((post, index) => {
+            if (typeof post !== "object" || post === null) return null;
+            const styleVariant = styles?.[index % styles.length] ?? "primary";
+            const variantClasses = getVariantClasses(styleVariant);
+            const href = `/posts/${post.slug}`;
+            const metaImage = post.meta?.image;
+            const description = post.meta?.description;
+            const title = post.title;
+            const sanitizedDescription = description?.replace(/\s/g, " ");
 
-          return (
-            <div
-              className={cn(
-                // base: single column
-                "grid grid-cols-1 gap-6",
-                // md: 2 columns with conditional rows
-                "md:grid-cols-2",
-                mdRowsClass,
-                // lg: 3 columns with conditional rows
-                "lg:grid-cols-3",
-                lgRowsClass,
-                // xl: 4 columns with conditional rows
-                "xl:grid-cols-4",
-                xlRowsClass
-              )}
-            >
-              {posts.map((post, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg border border-border bg-card p-4"
-                >
-                  <h3 className="text-lg font-semibold mb-2">
-                    {typeof post === "object" ? post.title : ""}
-                  </h3>
-                  {/* You can extend this with a Card component if desired */}
+            return (
+              <Link className={"h-full w-full min-w-max max-w-full"} key={href} href={href}>
+              <article
+                key={index}
+                className={cn(
+                  variantClasses,
+                  "shadow-lg rounded-lg p-4 flex h-52 w-full min-w-max flex-row-reverse hover:cursor-pointer"
+                )}
+              >
+                <div className="relative h-full w-32 ">
+                  {!metaImage && <div className="bg-base-200 rounded-lg h-full w-full" />}
+                  {metaImage && typeof metaImage === "object" && (
+                    <Media
+                      resource={metaImage}
+                      imgClassName="h-full w-full object-cover rounded-lg overflow-clip object-center shadow-xl absolute inset-0"
+                      pictureClassName="h-full w-full rounded-lg overflow-clip object-center bg-base-200 shadow-lg"
+                      fill
+                    />
+                  )}
                 </div>
-              ))}
-            </div>
-          );
-        })()}
+                <div className="max-w-full min-w-40 h-52 text-base grow ">
+                  {title && (
+                    <Link
+                      className="w-40 text-start text-base sm:text-xl font-bold no-underline"
+                      href={href}
+                    >
+                      <h3>{title}</h3>
+                    </Link>
+                  )}
+                  {post.eventDate && (
+                    <div className="not-prose w-40 text-start text-sm sm:text-lg mb-2">
+                      Data: {new Date(post.eventDate).toLocaleDateString()}
+                    </div>
+                  )}
+                  {description && (
+                    <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 text-xs sm:text-sm w-40 text-start">
+                      {sanitizedDescription && <p>{sanitizedDescription}</p>}
+                    </div>
+                  )}
+                </div>
+              </article>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
