@@ -16,7 +16,7 @@ type PrimitiveProps = CTABlockProps & {
   // Optional: use media as background when provided
   useMediaBackground?: boolean;
   // Modal variant support
-  ctaType?: "links" | "modal";
+  ctaType?: "links" | "modal" | null;
   form?: FormType;
   modalButtonText?: string;
 };
@@ -61,6 +61,8 @@ export const CTAPrimitive: React.FC<PrimitiveProps> = ({
   const bgClass = tokenToBgClass[bgToken];
   const textClass = tokenToTextClass[textToken];
   const buttonClass = tokenToButtonClass[buttonToken];
+
+
 
   return (
     <div className={"container mx-auto max-w-2xl lg:max-w-4xl"}>
