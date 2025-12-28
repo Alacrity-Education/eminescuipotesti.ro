@@ -59,7 +59,7 @@ export const LongCard: React.FC<{
       <button className="btn-primary btn btn-sm hidden lg:inline-block">
         Citeste mai mult &rarr;
       </button>
-      <div className="relative h-60 w-60 lg:h-100 lg:w-70 xl:h-100">
+      <div className="relative h-60 w-60 lg:h-100 lg:w-66 xl:h-100">
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== "string" && (
           <Media
@@ -70,7 +70,7 @@ export const LongCard: React.FC<{
           />
         )}
       </div>
-      <div className=" lg:pr-0 max-w-full w-full h-52  md:grow text-base lg:h-52 lg:w-70 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
+      <div className=" lg:pr-0 max-w-full w-full h-52  md:grow text-base lg:h-52 lg:w-66 lg:max-w-full lg:flex lg:flex-col lg:items-center ">
         {titleToUse && (
               <Link
                 className=" w-40 lg:w-full lg:h-28 text-start text-base sm:text-xl font-bold no-underline lg:text-2xl lg:leading-normal"

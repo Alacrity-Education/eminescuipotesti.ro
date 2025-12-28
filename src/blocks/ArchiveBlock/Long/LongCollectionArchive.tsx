@@ -15,7 +15,7 @@ export const LongCollectionArchive: React.FC<Props> = ({ posts, styles }) => {
       <div className="relative">
         <div
           className={cn(
-            "relative flex w-full  flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid lg:min-h-[70dvh] lg:grid-cols-3 lg:gap-4 xl:grid-cols-4 xl:gap-4",
+            "relative flex w-full  flex-col gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-4",
             "lg:[&>*:nth-child(n+4)]:hidden xl:[&>*:nth-child(n+4)]:flex xl:[&>*:nth-child(n+5)]:hidden"
           )}
         >

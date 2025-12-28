@@ -104,7 +104,7 @@ export const CardsArchiveBlock: React.FC<
             const sanitizedDescription = description?.replace(/\s/g, " ");
 
             return (
-              <Link className={"h-full w-full min-w-max max-w-full"} key={href} href={href}>
+              <Link className={"h-full w-full min-w-max max-w-full hover:-translate-y-1 transition-all shadow-lg"} key={href} href={href}>
               <article
                 key={index}
                 className={cn(
@@ -123,25 +123,23 @@ export const CardsArchiveBlock: React.FC<
                     />
                   )}
                 </div>
-                <div className="max-w-full min-w-40 h-52 text-base grow ">
+                <div className="max-w-full min-w-40 h-full text-base grow flex flex-col justify-between">
                   {title && (
-                    <Link
+                    <div
                       className="w-40 text-start text-base sm:text-xl font-bold no-underline"
                       href={href}
                     >
                       <h3>{title}</h3>
-                    </Link>
+                    </div>
                   )}
+
                   {post.eventDate && (
                     <div className="not-prose w-40 text-start text-sm sm:text-lg mb-2">
                       Data: {new Date(post.eventDate).toLocaleDateString()}
+
                     </div>
                   )}
-                  {description && (
-                    <div className="line-clamp-7 font-light sm:line-clamp-3 md:line-clamp-5 text-xs sm:text-sm w-40 text-start">
-                      {sanitizedDescription && <p>{sanitizedDescription}</p>}
-                    </div>
-                  )}
+
                 </div>
               </article>
               </Link>

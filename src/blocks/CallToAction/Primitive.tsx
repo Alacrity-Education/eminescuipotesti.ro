@@ -42,7 +42,7 @@ const tokenToButtonClass: Record<ColorToken, string> = {
   secondary: "btn btn-secondary",
   neutral: "btn btn-neutral",
   base: "btn text-base-content",
-  transparent: "btn btn-ghost text-base",
+  transparent: "btn btn-ghost text-base border border-base-100",
 };
 
 export const CTAPrimitive: React.FC<PrimitiveProps> = ({
@@ -85,7 +85,7 @@ export const CTAPrimitive: React.FC<PrimitiveProps> = ({
             )}
           </div>
           <div className="grow"></div>
-          <div className="max-w flex flex-row gap-8">
+          <div className="max-w flex flex-col sm:flex-row gap-8">
             {ctaType === "modal" && form ? (
               <CTAModal id="cta_modal" buttonText={modalButtonText || "Open"} form={form} buttonClassName={buttonClass} />
             ) : (
