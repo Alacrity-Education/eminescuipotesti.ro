@@ -131,11 +131,13 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
             </article>
           );
 
-          // Make entire card clickable if link is present
-          return link && link.url ? (
-            <a href={link.url} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
+
+
+
+          return link ? (
+            <CMSLink {...link} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
-            </a>
+            </CMSLink>
           ) : (
             <div className={cn(spanClasses," h-full w-full")} key={i}>{cardInner}</div>
           );
