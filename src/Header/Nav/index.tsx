@@ -25,7 +25,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 <ul className="menu dropdown-content rounded-box bg-base-100 z-10 mt-3 w-52 p-1 shadow-sm">
                   {(subItems || []).map((sub: any, idx: number) => (
                     <li key={idx}>
-                      <CMSLink {...sub.link} appearance="inline" className={"invert"} />
+                      <CMSLink {...sub.link} appearance="inline" className={"invert text-xs"} />
                     </li>
                   ))}
                 </ul>
@@ -59,7 +59,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                     <ul className="bg-base-100 rounded-t-none p-2">
                       {(subItems || []).map((sub: any, idx: number) => (
                         <li key={idx}>
-                          <CMSLink {...sub.link} appearance="inline" className={"invert"} />
+                          <CMSLink {...sub.link} appearance="inline" className={"invert text-xs"} />
                         </li>
                       ))}
                     </ul>
@@ -69,7 +69,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             }
             return (
               <li key={i}>
-                <CMSLink {...link} appearance={"inline"} className={"invert"} />
+                <CMSLink {...link} appearance={"inline"} className={"invert text-xs"} />
               </li>
             );
           })}
