@@ -14,12 +14,7 @@ interface HeaderClientProps {
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  useEffect(() => {
-    const openDetails = document.querySelectorAll('details[open]');
-    openDetails.forEach((details) => {
-      details.removeAttribute('open');
-    });
-  }, []);
+
 
   return (
     <header className="font-base to-primary/50 relative z-50 w-screen bg-linear-to-r from-white via-white via-40% backdrop-blur-md sm:via-20% md:to-50%">

@@ -8,6 +8,10 @@ const PageClient: React.FC = () => {
 
   useEffect(() => {
     setHeaderTheme('light')
+      const openDetails = document.querySelectorAll('details[open]');
+      openDetails.forEach((details) => {
+        details.removeAttribute('open');
+      });
   }, [setHeaderTheme])
   return <React.Fragment />
 }
