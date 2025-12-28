@@ -6,8 +6,9 @@ import {
   ParagraphFeature,
   lexicalEditor,
   UnderlineFeature,
-  type LinkFields, OrderedListFeature, UnorderedListFeature,
+  type LinkFields, OrderedListFeature, UnorderedListFeature, BlocksFeature,
 } from '@payloadcms/richtext-lexical'
+import {StaticMap} from "@/blocks/StaticMap/config";
 
 export const defaultLexical = lexicalEditor({
   features: [
@@ -45,5 +46,10 @@ export const defaultLexical = lexicalEditor({
         ]
       },
     }),
+    BlocksFeature(
+      {
+        blocks:[ StaticMap ],
+      }
+    ),
   ],
 })

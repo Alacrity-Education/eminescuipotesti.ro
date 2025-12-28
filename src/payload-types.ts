@@ -210,6 +210,7 @@ export interface Page {
     | CardBlock
     | LogoCarouselBlock
     | ImageContentBlock
+    | StaticMapBlock
   )[];
   meta?: {
     title?: string | null;
@@ -936,6 +937,31 @@ export interface ImageContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StaticMapBlock".
+ */
+export interface StaticMapBlock {
+  title?: string | null;
+  variant?: ('default' | 'mono' | 'mono-black') | null;
+  initialView: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+  markers?:
+    | {
+        latitude: number;
+        longitude: number;
+        title?: string | null;
+        subtitle?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'staticMap';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1247,6 +1273,7 @@ export interface PagesSelect<T extends boolean = true> {
         cardBlock?: T | CardBlockSelect<T>;
         logoCarousel?: T | LogoCarouselBlockSelect<T>;
         imageContent?: T | ImageContentBlockSelect<T>;
+        staticMap?: T | StaticMapBlockSelect<T>;
       };
   meta?:
     | T
@@ -1430,6 +1457,32 @@ export interface ImageContentBlockSelect<T extends boolean = true> {
         ctaText?: T;
         ctaHref?: T;
         media?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StaticMapBlock_select".
+ */
+export interface StaticMapBlockSelect<T extends boolean = true> {
+  title?: T;
+  variant?: T;
+  initialView?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+        zoom?: T;
+      };
+  markers?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+        title?: T;
+        subtitle?: T;
         id?: T;
       };
   id?: T;

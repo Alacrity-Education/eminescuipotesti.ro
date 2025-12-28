@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import {CardBlock} from "@/blocks/CardBlock/Component";
 import {LogoCarousel} from "@/blocks/LogoCarouselBlock/Component.client";
 import { ImageContentBlock } from "@/blocks/ImageContent/Component";
+import { StaticMapBlock } from "@/blocks/StaticMap/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   cardBlock: CardBlock,
   logoCarousel: LogoCarousel,
   imageContent: ImageContentBlock,
+  staticMap: StaticMapBlock,
 }
 
 export const RenderBlocks: React.FC<{
