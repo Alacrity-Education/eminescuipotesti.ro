@@ -41,8 +41,8 @@ const tokenToButtonClass: Record<ColorToken, string> = {
   primary: "btn btn-primary",
   secondary: "btn btn-secondary",
   neutral: "btn btn-neutral",
-  base: "btn",
-  transparent: "btn",
+  base: "btn text-base-content",
+  transparent: "btn btn-ghost",
 };
 
 export const CTAPrimitive: React.FC<PrimitiveProps> = ({
