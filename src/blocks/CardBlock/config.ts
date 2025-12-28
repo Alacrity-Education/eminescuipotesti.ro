@@ -1,6 +1,6 @@
 import type { Block } from "payload";
 import {FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor} from "@payloadcms/richtext-lexical";
-
+import { link } from '@/fields/link'
 export const CardBlock: Block = {
   slug: "cardBlock",
   interfaceName: "CardBlock",
@@ -69,15 +69,16 @@ export const CardBlock: Block = {
           min: 1,
           max: 2,
         },
-        {
-          name: "link",
-          type: "text",
-          label: "Card Link",
-          admin: {
-            description:
-              "If set, the entire card is clickable and shows an arrow.",
-          },
-        },
+        link({ appearances: false }),
+        // {
+        //   name: "link",
+        //   type: "text",
+        //   label: "Card Link",
+        //   admin: {
+        //     description:
+        //       "If set, the entire card is clickable and shows an arrow.",
+        //   },
+        // },
         // Background image toggle and media
         {
           name: "backgroundStyle",

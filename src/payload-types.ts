@@ -840,10 +840,21 @@ export interface CardBlock {
          * 1 or 2 rows (on lg screens)
          */
         rowSpan?: number | null;
-        /**
-         * If set, the entire card is clickable and shows an arrow.
-         */
-        link?: string | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
         backgroundStyle?: ('none' | 'image') | null;
         /**
          * Shown as an object-cover background when enabled
@@ -1367,7 +1378,15 @@ export interface CardBlockSelect<T extends boolean = true> {
         variant?: T;
         colSpan?: T;
         rowSpan?: T;
-        link?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
         backgroundStyle?: T;
         backgroundImage?: T;
         backgroundOpacity?: T;

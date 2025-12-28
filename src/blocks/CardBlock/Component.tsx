@@ -3,6 +3,7 @@ import type { CardBlock as CardBlockProps } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import RichText from "@/components/RichText";
 import { Media } from "@/components/Media";
+import {CMSLink} from "@/components/Link";
 
 type Variant = "primary" | "secondary" | "starry" | "white";
 
@@ -23,7 +24,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
     return "text-primary-content"; // starry
   };
 
-  const visibleCards = (cards || []).slice(0, 6);
+  const visibleCards = (cards || []);
   // grid columns responsive setup
   const gridColsBase = "grid grid-cols-1 gap-6";
   const gridColsMd = "md:grid-cols-2";
@@ -46,6 +47,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
       )}>
         {visibleCards.map((card, i) => {
           const rawVariant = card?.variant as Variant | undefined;
+          const link = card?.link;
           const variant: Variant = rawVariant ?? "primary";
           const isWhite = variant === "white";
           // row and col span support (clamped to 1-2)
@@ -111,7 +113,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
               </div>
 
               {/* Arrow indicator when link exists */}
-              {href && (
+              {link && (
                 <span
                   className={cn(
                     "absolute bottom-4 right-4 inline-flex items-center justify-center",
@@ -129,10 +131,10 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
           );
 
           // Make entire card clickable if link is present
-          return href ? (
-            <a key={i} href={href} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
+          return link ? (
+            <CMSLink key={i} {...link} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
-            </a>
+            </CMSLink>
           ) : (
             <div className={cn(spanClasses," h-full w-full")} key={i}>{cardInner}</div>
           );
