@@ -61,7 +61,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   return (
     <Link
-      className={cn("btn btn-sm sm:btn-md", className)}
+      className={cn("btn", className)}
       href={href || url || ""}
       {...newTabProps}
     >
