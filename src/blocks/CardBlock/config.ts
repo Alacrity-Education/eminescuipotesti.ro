@@ -18,7 +18,6 @@ export const CardBlock: Block = {
       name: "cards",
       type: "array",
       label: "Cards",
-      maxRows: 6, // support up to 3 cols x 2 rows on lg
       fields: [
         {
           name: "title",
