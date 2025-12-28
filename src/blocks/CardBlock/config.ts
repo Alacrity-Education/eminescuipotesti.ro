@@ -1,4 +1,5 @@
 import type { Block } from "payload";
+import {FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor} from "@payloadcms/richtext-lexical";
 
 export const CardBlock: Block = {
   slug: "cardBlock",
@@ -28,6 +29,16 @@ export const CardBlock: Block = {
           name: "description",
           type: "richText",
           label: "Description",
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => {
+              return [
+                ...rootFeatures,
+                HeadingFeature({ enabledHeadingSizes: ['h3', 'h4'] }),
+                FixedToolbarFeature(),
+                InlineToolbarFeature(),
+              ]
+            },
+          }),
         },
         {
           name: "variant",
