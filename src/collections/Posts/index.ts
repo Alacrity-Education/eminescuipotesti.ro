@@ -162,9 +162,16 @@ export const Posts: CollectionConfig<'posts'> = {
       ],
     },
     {
+      name: 'isEvent',
+      type: 'checkbox',
+      label: 'Is event',
+      defaultValue: false,
+    },
+    {
       name: 'eventDate',
       type: 'date',
       admin: {
+        condition: (_, siblingData) => Boolean(siblingData?.isEvent),
         date: {
           pickerAppearance: 'dayAndTime',
         },
@@ -172,7 +179,7 @@ export const Posts: CollectionConfig<'posts'> = {
       hooks:{
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
+            if (siblingData._status === 'published' && !value && siblingData?.isEvent) {
               return new Date()
             }
             return value
