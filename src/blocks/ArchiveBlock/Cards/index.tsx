@@ -127,7 +127,7 @@ export const CardsArchiveBlock: React.FC<
                   {title && (
                     <div
                       className="w-40 text-start text-base sm:text-xl font-bold no-underline"
-                      href={href}
+                
                     >
                       <h3>{title}</h3>
                     </div>
