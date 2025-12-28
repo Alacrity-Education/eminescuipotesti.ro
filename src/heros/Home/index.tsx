@@ -22,7 +22,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
       data-theme="dark"
     >
       <div className="font-base relative z-20 container mb-8 flex h-full items-end justify-start">
-        <div className="pb-4 md:text-start">
+        <div className="pb-8 md:text-start">
           {title && (
             <h1 className="mb-6 max-w-full text-5xl font-semibold sm:max-w-2/3 md:max-w-lg md:text-7xl xl:text-8xl">
               {title}
