@@ -18,7 +18,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
         if (itemType === "parent") {
           return (
             <div key={i} className="hidden md:block">
-              <details className="dropdown  dropdown-end">
+              <details className="dropdown   dropdown-end">
                 <summary className="btn btn-sm btn-ghost bg-base-100/20 text-white">
                   {link?.label || "Menu"}
                 </summary>
@@ -44,7 +44,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       })}
 
       {/* Mobile menu */}
-      <details className="dropdown dropdown-end md:hidden">
+      <details className="dropdown dropdown-end  md:hidden">
         <summary className="btn btn-ghost btn-xs m-1">
           <MenuIcon className="h-full" />
         </summary>
