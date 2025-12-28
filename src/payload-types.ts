@@ -177,7 +177,7 @@ export interface Page {
     subtitle?: string | null;
     links?:
       | {
-          link: {
+          link?: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
             reference?:
@@ -190,7 +190,7 @@ export interface Page {
                   value: number | Post;
                 } | null);
             url?: string | null;
-            label: string;
+            label?: string | null;
             /**
              * Choose how the link should be rendered.
              */
@@ -477,7 +477,7 @@ export interface CallToActionBlock {
   form?: (number | null) | Form;
   links?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -490,7 +490,7 @@ export interface CallToActionBlock {
                 value: number | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -715,7 +715,7 @@ export interface ContentBlock {
                 value: number | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -840,7 +840,7 @@ export interface CardBlock {
          * 1 or 2 rows (on lg screens)
          */
         rowSpan?: number | null;
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -853,7 +853,7 @@ export interface CardBlock {
                 value: number | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
         };
         backgroundStyle?: ('none' | 'image') | null;
         /**
@@ -1889,7 +1889,7 @@ export interface Header {
   navItems?:
     | {
         itemType?: ('link' | 'parent') | null;
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -1902,11 +1902,11 @@ export interface Header {
                 value: number | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
         };
         subItems?:
           | {
-              link: {
+              link?: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
                 reference?:
@@ -1919,7 +1919,7 @@ export interface Header {
                       value: number | Post;
                     } | null);
                 url?: string | null;
-                label: string;
+                label?: string | null;
               };
               id?: string | null;
             }[]
@@ -1944,7 +1944,7 @@ export interface Footer {
         title: string;
         links?:
           | {
-              link: {
+              link?: {
                 type?: ('reference' | 'custom') | null;
                 newTab?: boolean | null;
                 reference?:
@@ -1957,7 +1957,7 @@ export interface Footer {
                       value: number | Post;
                     } | null);
                 url?: string | null;
-                label: string;
+                label?: string | null;
               };
               id?: string | null;
             }[]
