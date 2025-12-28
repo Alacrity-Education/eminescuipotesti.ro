@@ -4,6 +4,7 @@ import { cn } from "@/utilities/ui";
 import RichText from "@/components/RichText";
 import { Media } from "@/components/Media";
 import {CMSLink} from "@/components/Link";
+import Link from "next/link";
 
 type Variant = "primary" | "secondary" | "starry" | "white";
 
@@ -132,9 +133,9 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
 
           // Make entire card clickable if link is present
           return link ? (
-            <CMSLink key={i} {...link} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
+            <a href={link.url} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
-            </CMSLink>
+            </a>
           ) : (
             <div className={cn(spanClasses," h-full w-full")} key={i}>{cardInner}</div>
           );
