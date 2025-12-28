@@ -42,7 +42,7 @@ const tokenToButtonClass: Record<ColorToken, string> = {
   secondary: "btn btn-secondary",
   neutral: "btn btn-neutral",
   base: "btn text-base-content",
-  transparent: "btn btn-ghost",
+  transparent: "btn btn-ghost text-base",
 };
 
 export const CTAPrimitive: React.FC<PrimitiveProps> = ({
