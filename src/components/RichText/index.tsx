@@ -3,6 +3,8 @@ import {
   DefaultNodeTypes,
   SerializedBlockNode,
   SerializedLinkNode,
+  UnorderedListFeature,
+  OrderedListFeature,
   type DefaultTypedEditorState,
 } from "@payloadcms/richtext-lexical";
 import {

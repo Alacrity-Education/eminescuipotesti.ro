@@ -262,6 +262,7 @@ export interface Post {
     image?: (number | null) | Media;
     description?: string | null;
   };
+  isEvent?: boolean | null;
   eventDate?: string | null;
   publishedAt?: string | null;
   authors?: (number | User)[] | null;
@@ -1432,6 +1433,7 @@ export interface PostsSelect<T extends boolean = true> {
         image?: T;
         description?: T;
       };
+  isEvent?: T;
   eventDate?: T;
   publishedAt?: T;
   authors?: T;
