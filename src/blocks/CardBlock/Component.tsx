@@ -32,7 +32,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
   const gridColsLg = "lg:grid-cols-3";
 
   return (
-    <section className={cn("container mx-auto w-full h-max py-12 px-4 md:px-8 lg:px-16")}>
+    <section className={cn("container mx-auto w-full h-max py-12 px-2 md:px-3 lg:px-4")}>
       {title && (
         <h2 className={cn(
           "text-primary pb-20 text-center",

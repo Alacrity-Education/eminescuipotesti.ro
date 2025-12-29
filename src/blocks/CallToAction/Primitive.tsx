@@ -41,7 +41,7 @@ const tokenToButtonClass: Record<ColorToken, string> = {
   primary: "btn btn-primary",
   secondary: "btn btn-secondary",
   neutral: "btn btn-neutral",
-  base: "btn text-base-content",
+  base: "btn btn-base text-base-content",
   transparent: "btn btn-ghost text-base border border-base-100",
 };
 
