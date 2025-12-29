@@ -114,7 +114,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
               </div>
 
               {/* Arrow indicator when link exists */}
-              {link && (
+              {link && card.withLink && (
                 <span
                   className={cn(
                     "absolute bottom-4 right-4 inline-flex items-center justify-center",
@@ -134,7 +134,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
 
 
 
-          return link  ? (
+          return link && card.withLink ? (
             <CMSLink {...link} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
             </CMSLink>

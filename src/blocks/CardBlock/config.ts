@@ -81,6 +81,12 @@ export const CardBlock: Block = {
         },
         link({ appearances: false, overrides:{
             required:false,
+            // Skip validation when link is disabled
+            validate: (_val, { siblingData }) => {
+              // siblingData here refers to the card-level data
+              if (!(siblingData as Partial<any>)?.withLink) return true;
+              return true;
+            },
           admin:
             {
               condition: (data, siblingData) => siblingData?.withLink === true,
@@ -88,15 +94,6 @@ export const CardBlock: Block = {
           }
         })
        ,
-        // {
-        //   name: "link",
-        //   type: "text",
-        //   label: "Card Link",
-        //   admin: {
-        //     description:
-        //       "If set, the entire card is clickable and shows an arrow.",
-        //   },
-        // },
         // Background image toggle and media
         {
           name: "backgroundStyle",
