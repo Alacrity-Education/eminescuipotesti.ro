@@ -69,7 +69,24 @@ export const CardBlock: Block = {
           min: 1,
           max: 2,
         },
-        link({ appearances: false }),
+        {
+          name: "withLink",
+          type: "checkbox",
+          label: "Enable Link",
+          defaultValue: false,
+          admin: {
+            description: "Enable to add a link to the card",
+          },
+        
+        },
+        link({ appearances: false, overrides:{
+          admin:
+            {
+              condition: (data, siblingData) => siblingData?.withLink === true,
+            }
+          }
+        })
+       ,
         // {
         //   name: "link",
         //   type: "text",

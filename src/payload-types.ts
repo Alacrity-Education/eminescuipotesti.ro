@@ -841,6 +841,10 @@ export interface CardBlock {
          * 1 or 2 rows (on lg screens)
          */
         rowSpan?: number | null;
+        /**
+         * Enable to add a link to the card
+         */
+        withLink?: boolean | null;
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -1405,6 +1409,7 @@ export interface CardBlockSelect<T extends boolean = true> {
         variant?: T;
         colSpan?: T;
         rowSpan?: T;
+        withLink?: T;
         link?:
           | T
           | {
