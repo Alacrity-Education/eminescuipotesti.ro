@@ -85,6 +85,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
         condition: (_, siblingData) => siblingData?.type === 'custom',
       },
       label: 'Custom URL',
+      defaultValue:"#",
       required: true,
     },
   ]

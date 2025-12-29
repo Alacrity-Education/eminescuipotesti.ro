@@ -134,7 +134,7 @@ export const CardBlock: React.FC<CardBlockProps & { title?: string }> = ({ title
 
 
 
-          return link ? (
+          return link  ? (
             <CMSLink {...link} key={i} className={cn("block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary ", spanClasses)}>
               {cardInner}
             </CMSLink>

@@ -77,9 +77,10 @@ export const CardBlock: Block = {
           admin: {
             description: "Enable to add a link to the card",
           },
-        
+
         },
         link({ appearances: false, overrides:{
+            required:false,
           admin:
             {
               condition: (data, siblingData) => siblingData?.withLink === true,
