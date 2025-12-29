@@ -77,7 +77,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       label: 'Document to link to',
       relationTo: ['pages', 'posts'],
       // Conditionally validate only when type is reference
-      validate: (val, { siblingData }) => {
+      validate: (val:any, { siblingData }: {siblingData:any}) => {
         if (siblingData?.type !== 'reference') return true
         return !!val || 'Please choose a document to link to.'
       },
@@ -91,7 +91,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       label: 'Custom URL',
       defaultValue: '#',
       // Conditionally validate only when type is custom
-      validate: (val, { siblingData }) => {
+      validate: (val:any, { siblingData } : {siblingData:any}) => {
         if (siblingData?.type !== 'custom') return true
         return !!val || 'Please provide a URL.'
       },

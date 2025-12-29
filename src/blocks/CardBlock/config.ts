@@ -82,7 +82,7 @@ export const CardBlock: Block = {
         link({ appearances: false, overrides:{
             required:false,
             // Skip validation when link is disabled
-            validate: (_val, { siblingData }) => {
+            validate: (_val:any, { siblingData }) => {
               // siblingData here refers to the card-level data
               if (!(siblingData as Partial<any>)?.withLink) return true;
               return true;
