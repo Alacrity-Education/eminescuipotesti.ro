@@ -16,7 +16,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   };
 
   return (
-    <div className="container mx-auto my-4 w-full sm:my-40">
+    <div className="container mx-auto my-4 w-full sm:my-10">
       {title && (
         <h2 className="text-primary py-10 text-center text-xl font-semibold md:text-3xl">
           {title}
