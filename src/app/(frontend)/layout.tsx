@@ -16,6 +16,7 @@ import { draftMode } from "next/headers";
 
 import "./globals.css";
 import { getServerSideURL } from "@/utilities/getURL";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -57,6 +58,9 @@ export default async function RootLayout({
           {children}
           <Footer />
         </Providers>
+      <Script defer={true} id={"accessiblity"} src={"https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js"}>
+
+      </Script>
       </body>
     </html>
   );
