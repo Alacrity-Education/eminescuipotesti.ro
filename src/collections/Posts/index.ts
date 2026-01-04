@@ -72,6 +72,11 @@ export const Posts: CollectionConfig<'posts'> = {
       required: true,
     },
     {
+      name: 'subtitle',
+      type: 'text',
+      required: false,
+    },
+    {
       type: 'tabs',
       tabs: [
         {
