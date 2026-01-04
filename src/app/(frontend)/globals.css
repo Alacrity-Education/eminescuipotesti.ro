@@ -44,23 +44,23 @@
 }
 
 .text-primary-content{
-  @apply prose-h1:text-primary-content prose-h2:text-primary-content prose-h3:text-primary-content prose-h4:text-primary-content prose-h5:text-primary-content prose-h6:text-primary-content prose-p:text-primary-content prose-a:text-primary-content ;
+  @apply prose-h1:text-primary-content prose-h2:text-primary-content prose-h3:text-primary-content prose-h4:text-primary-content prose-h5:text-primary-content prose-h6:text-primary-content prose-p:text-primary-content prose-a:text-primary-content prose-b:text-primary-content prose-b:font-bold ;
 }
 
 .text-secondary-content {
-  @apply prose-h1:text-secondary-content prose-h2:text-secondary-content prose-h3:text-secondary-content prose-h4:text-secondary-content prose-h5:text-secondary-content prose-h6:text-secondary-content prose-p:text-secondary-content prose-a:text-secondary-content ;
+  @apply prose-h1:text-secondary-content prose-h2:text-secondary-content prose-h3:text-secondary-content prose-h4:text-secondary-content prose-h5:text-secondary-content prose-h6:text-secondary-content prose-p:text-secondary-content prose-a:text-secondary-content prose-b:text-secondary-content prose-b:font-bold ;
 }
 
 .text-accent-content{
-  @apply prose-h1:text-accent-content prose-h2:text-accent-content prose-h3:text-accent-content prose-h4:text-accent-content prose-h5:text-accent-content prose-h6:text-accent-content prose-p:text-accent-content prose-a:text-accent-content ;
+  @apply prose-h1:text-accent-content prose-h2:text-accent-content prose-h3:text-accent-content prose-h4:text-accent-content prose-h5:text-accent-content prose-h6:text-accent-content prose-p:text-accent-content prose-a:text-accent-content prose-b:text-accent-content prose-b:font-bold ;
 }
 
 .text-neutral-content{
-  @apply prose-h1:text-neutral-content prose-h2:text-neutral-content prose-h3:text-neutral-content prose-h4:text-neutral-content prose-h5:text-neutral-content prose-h6:text-neutral-content prose-p:text-neutral-content prose-a:text-neutral-content ;
+  @apply prose-h1:text-neutral-content prose-h2:text-neutral-content prose-h3:text-neutral-content prose-h4:text-neutral-content prose-h5:text-neutral-content prose-h6:text-neutral-content prose-p:text-neutral-content prose-a:text-neutral-content prose-b:text-neutral-content prose-b:font-bold ;
 }
 
 .text-base-content{
-  @apply prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-base-content prose-h4:text-base-content prose-h5:text-base-content prose-h6:text-base-content prose-p:text-base-content prose-a:text-base-content ;
+  @apply prose-h1:text-base-content prose-h2:text-base-content prose-h3:text-base-content prose-h4:text-base-content prose-h5:text-base-content prose-h6:text-base-content prose-p:text-base-content prose-a:text-base-content prose-b:text-base-content prose-b:font-bold ;
 }
 
 @theme {
